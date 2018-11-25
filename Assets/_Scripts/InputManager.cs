@@ -19,6 +19,7 @@ public class InputManager : MonoBehaviour {
 	}
 
 	Vector3 fwd;
+
 	// Update is called once per frame
 	void Update () {
 		fwd = pointer.transform.TransformDirection(Vector3.forward);
