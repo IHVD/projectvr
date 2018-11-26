@@ -26,7 +26,7 @@ public class InputManager : MonoBehaviour {
 		text_trigger.text = "" + OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger);
 
 		if (OVRInput.IsControllerConnected(OVRInput.Controller.RTrackedRemote)) { //making sure its the right one.
-			if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger)) { //If we have the trigger down.
+			if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger) > 0.5f || OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) > 0.5f) { //If we have the trigger down.
 
 				if (objectToMove == null) { //Already have an object so dont have to fire again.
 					RaycastHit hitInfo;
