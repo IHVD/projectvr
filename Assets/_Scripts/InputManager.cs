@@ -23,7 +23,7 @@ public class InputManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		fwd = pointer.transform.TransformDirection(Vector3.forward);
-		text_trigger.text = "" + OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger);
+		text_trigger.text = "" + OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger) + " " + OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger) + " " + OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger);
 
 		if (OVRInput.IsControllerConnected(OVRInput.Controller.RTrackedRemote)) { //making sure its the right one.
 			if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger) > 0.5f || OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) > 0.5f) { //If we have the trigger down.
