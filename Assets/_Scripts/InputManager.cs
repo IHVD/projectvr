@@ -13,11 +13,6 @@ public class InputManager : MonoBehaviour {
 
 	public GameObject objectToMove;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-
 	Vector3 fwd;
 
 	// Update is called once per frame
@@ -28,22 +23,28 @@ public class InputManager : MonoBehaviour {
 		if (OVRInput.IsControllerConnected(OVRInput.Controller.RTrackedRemote)) { //making sure its the right one.
 			if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger)) { //If we have the trigger down.
 
+				//TODO layermask
 				if (objectToMove == null) { //Already have an object so dont have to fire again.
 					RaycastHit hitInfo;
 					if (Physics.Raycast(pointer.transform.position, fwd, out hitInfo, Mathf.Infinity)) {
 						text_debug.text = "Currently Hitting: " + hitInfo.transform.name;
 						objectToMove = hitInfo.transform.gameObject;
+						objectToMove.GetComponent<Rigidbody>().isKinematic = true;
 						pointerStick.SetActive(false);
+						
 					}
 				}
-
+				
 				Quaternion controllerRotation = OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote);
 
 				//MOVE THE OBJECT
-				objectToMove.transform.position = new Vector3(objectToMove.transform.position.x + controllerRotation.y, objectToMove.transform.position.y + -controllerRotation.x, objectToMove.transform.position.z); //y, x
+				//objectToMove.transform.position = new Vector3(objectToMove.transform.position.x + controllerRotation.y, objectToMove.transform.position.y + -controllerRotation.x, objectToMove.transform.position.z); //y, x
+				objectToMove.transform.parent = pointerStick.transform.parent;
 
 			} else {
 				if (objectToMove != null) {
+					objectToMove.transform.parent = null;
+					objectToMove.GetComponent<Rigidbody>().isKinematic = false;
 					objectToMove = null;
 					pointerStick.SetActive(true);
 				}
