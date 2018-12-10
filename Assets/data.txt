@@ -1,1 +1,1 @@
-VelocityMultiplier,10
+VelocityMultiplier,5

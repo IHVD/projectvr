@@ -20,6 +20,24 @@ public class GameVariables : MonoBehaviour {
 		StartCoroutine(CSVLoad(urlToDownload));
 	}*/
 
+	public IEnumerator CSVLoad(string urlToDownload) {
+		WWW urlRetrieved = new WWW(urlToDownload);
+
+		yield return urlRetrieved;
+
+		if(urlRetrieved.error == null) {
+			CSVDownloaded = urlRetrieved.text;
+
+			if (File.Exists(Application.dataPath + "/data.txt")) {
+				File.Delete(Application.dataPath + "/data.txt");
+			}
+
+			File.WriteAllText(Application.dataPath + "/data.txt", urlRetrieved.text);
+
+			CSVRead();	
+		}
+	}
+
 	//referenced from https://www.youtube.com/watch?v=xwnL4meq-j8&feature=youtu.be by Rapid Gaming, 13 nov 2018.
 	public void CSVRead() {
 		StreamReader streamReader = new StreamReader(Application.dataPath + "/data.txt");
@@ -38,23 +56,5 @@ public class GameVariables : MonoBehaviour {
 		}
 
 		GameController.gCont.ApplySettings();
-	}
-
-	public IEnumerator CSVLoad(string urlToDownload) {
-		WWW urlRetrieved = new WWW(urlToDownload);
-
-		yield return urlRetrieved;
-
-		if(urlRetrieved.error == null) {
-			CSVDownloaded = urlRetrieved.text;
-
-			if (File.Exists(Application.dataPath + "/data.txt")) {
-				File.Delete(Application.dataPath + "/data.txt");
-			}
-
-			File.WriteAllText(Application.dataPath + "/data.txt", urlRetrieved.text);
-
-			CSVRead();	
-		}
 	}
 }

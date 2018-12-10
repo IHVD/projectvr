@@ -46,6 +46,10 @@ public class OVRScreenFade : MonoBehaviour
 
 	void Awake()
 	{
+		CreateFade();
+	}
+
+	void CreateFade() {
 		// create the fade material
 		fadeMaterial = new Material(Shader.Find("Oculus/Unlit Transparent Color"));
 		fadeMesh = gameObject.AddComponent<MeshFilter>();
@@ -172,7 +176,7 @@ public class OVRScreenFade : MonoBehaviour
 	/// <summary>
 	/// Fades alpha from 1.0 to 0.0
 	/// </summary>
-	IEnumerator Fade(float startAlpha, float endAlpha)
+	public IEnumerator Fade(float startAlpha, float endAlpha)
 	{
 		float elapsedTime = 0.0f;
 		while (elapsedTime < fadeTime)
@@ -184,11 +188,21 @@ public class OVRScreenFade : MonoBehaviour
 		}
 	}
 
-    /// <summary>
-    /// Update material alpha. UI fade and the current fade due to fade in/out animations (or explicit control)
-    /// both affect the fade. (The max is taken)
-    /// </summary>
-    private void SetMaterialAlpha()
+	public IEnumerator Fade(float startAlpha, float endAlpha, float timeToFade) {
+		float elapsedTime = 0.0f;
+		while (elapsedTime < timeToFade) {
+			elapsedTime += Time.deltaTime;
+			currentAlpha = Mathf.Lerp(startAlpha, endAlpha, Mathf.Clamp01(elapsedTime / timeToFade));
+			SetMaterialAlpha();
+			yield return new WaitForEndOfFrame();
+		}
+	}
+
+	/// <summary>
+	/// Update material alpha. UI fade and the current fade due to fade in/out animations (or explicit control)
+	/// both affect the fade. (The max is taken)
+	/// </summary>
+	private void SetMaterialAlpha()
     {
 		Color color = fadeColor;
         color.a = Mathf.Max(currentAlpha, uiFadeAlpha);
