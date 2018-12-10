@@ -7,6 +7,7 @@ public class InputManager : MonoBehaviour {
 
 	public static InputManager inputMan;
 	public OVRScreenFade screenFade;
+	public FumehoodSliderScript fumeSlider;
 
 	[Header("Pointer and Debug")]
 	public GameObject pointer;
@@ -57,7 +58,16 @@ public class InputManager : MonoBehaviour {
 							cameraTargetPos = hitInfo.point + hitInfo.normal * cameraHeight;
 							
 							screenFade.StartCoroutine(screenFade.Fade(1, 0, 0.5f));
-							
+							MoveCamera();
+							return;
+						}
+						if (hitInfo.transform.tag == "Fumehood") { //teleport
+							if(hitInfo.transform.GetComponent<FumehoodSliderScript>() != null){
+								fumeSlider = hitInfo.transform.GetComponent<FumehoodSliderScript>();
+								//do function in fumehoodsliderscript that moves that glass.	
+								fumeSlider.GlassSlide();
+							}
+							return;
 						}
 
 						text_debug.text = "Currently Hitting: " + hitInfo.transform.name;
