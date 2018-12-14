@@ -8,6 +8,7 @@ public class InputManager : MonoBehaviour {
 	public static InputManager inputMan;
 	public OVRScreenFade screenFade;
 	public FumehoodSliderScript fumeSlider;
+	public PlayerStatusUI PlayerUI;
 
 	[Header("Pointer and Debug")]
 	public GameObject pointer;
@@ -33,7 +34,6 @@ public class InputManager : MonoBehaviour {
 	//Animator animator;
 	public int cameraHeight;
 
-
 	private void Start() {
 		inputMan = this;
 		if (screenFade == null)
@@ -54,19 +54,27 @@ public class InputManager : MonoBehaviour {
 
 					if (Physics.Raycast(pointer.transform.position, fwd, out hitInfo, Mathf.Infinity, LayerMask.GetMask("Interactable"))) {
 
-						if (hitInfo.transform.tag == "ground") { //teleport
-							cameraTargetPos = hitInfo.point + hitInfo.normal * cameraHeight;
-							
-							screenFade.StartCoroutine(screenFade.Fade(1, 0, 0.5f));
-							MoveCamera();
+						
+						if (hitInfo.transform.tag == "Player"){
+							PlayerUI = hitInfo.transform.GetComponent<PlayerStatusUI>();
+							PlayerUI.CheckTriggerPress();
+							PlayerUI.removePlayerStatus();
 							return;
 						}
-						if (hitInfo.transform.tag == "Fumehood") { //teleport
+						
+						if (hitInfo.transform.tag == "Fumehood") { //clicking the fumehood :P
 							if(hitInfo.transform.GetComponent<FumehoodSliderScript>() != null){
 								fumeSlider = hitInfo.transform.GetComponent<FumehoodSliderScript>();
 								//do function in fumehoodsliderscript that moves that glass.	
 								fumeSlider.GlassSlide();
 							}
+							return;
+						}
+
+						if (hitInfo.transform.tag == "ground") { //teleport
+							cameraTargetPos = hitInfo.point + hitInfo.normal * cameraHeight;
+							screenFade.StartCoroutine(screenFade.Fade(1, 0, 0.5f));
+							MoveCamera();
 							return;
 						}
 
