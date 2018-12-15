@@ -18,11 +18,16 @@ public class PlayerStatusUI : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		theName = GameObject.Find("Name").GetComponent<Text>();
-		theButtonText = GameObject.Find("ButtonText").GetComponent<Text>();
-		doing = GameObject.Find("Doing").GetComponent<Text>();
-		theButton = GameObject.Find("Button").GetComponent<Image>();
-		theBackground = GameObject.Find("Background").GetComponent<Image>();
+		if(theBackground == null)
+			theBackground = transform.GetChild(0).GetComponent<Image>();
+		if(theName == null)
+			theName = transform.GetChild(1).GetComponent<Text>();
+		if(doing == null)
+			doing = transform.GetChild(2).GetComponent<Text>();
+		if(theButton == null)
+			theButton = transform.GetChild(3).GetComponent<Image>();
+		if(theButtonText == null) 
+			theButtonText = transform.GetChild(3).GetChild(0).GetComponent<Text>();
 		removePlayerStatus ();
 	}
 
