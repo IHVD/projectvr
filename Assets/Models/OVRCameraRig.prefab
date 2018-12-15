@@ -1882,7 +1882,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1516422210273914}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -1967,17 +1967,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5653ca161e2c4e641aed371556b3ce9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  screenFade: {fileID: 0}
+  fumeSlider: {fileID: 0}
+  PlayerUI: {fileID: 0}
   pointer: {fileID: 1524835296416376}
   pointerStick: {fileID: 1516422210273914}
   text_debug: {fileID: 114407930628199916}
   text_trigger: {fileID: 114241203909703178}
   text_rotation: {fileID: 114995832370629978}
-  velocityMultiplier: 0
+  velocityMultiplier: 5
   objectToMove: {fileID: 0}
   cameraTargetPos: {x: 0, y: 0, z: 0}
-  fCont: {fileID: 0}
-  animator: {fileID: 0}
   cameraHeight: 3
+  inputKeys:
+  - getDown: 0
+    input: 0
+    ocGO: 8192
+    ocRift: 1
+    usesAxis: 0
+    ocGoAx: 0
+    ocRiftAx: 0
+    pressed: 0
 --- !u!114 &114305095570016866
 MonoBehaviour:
   m_ObjectHideFlags: 1

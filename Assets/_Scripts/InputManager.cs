@@ -3,6 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[System.Serializable]
+public class InputKey {
+
+	public bool getDown;
+	public InputManager.Inputs input;
+	public OVRInput.Button ocGO; //button to check
+	public OVRInput.Button ocRift; //button to check
+	public bool usesAxis;
+	public OVRInput.Axis1D ocGoAx; //axis button to check
+	public OVRInput.Axis1D ocRiftAx; //axis button to check
+
+	public bool pressed; //to use for debugging.
+}
+
 public class InputManager : MonoBehaviour {
 
 	public static InputManager inputMan;
@@ -22,7 +36,6 @@ public class InputManager : MonoBehaviour {
 	public GameObject objectToMove;
 	Vector3 prevPos;
 
-	
 	[Header("Raycast")]
 	LayerMask layerMask = 1 << 9;
 	Vector3 fwd;
@@ -34,6 +47,11 @@ public class InputManager : MonoBehaviour {
 	//Animator animator;
 	public int cameraHeight;
 
+	[Header("Input")]
+	public List<InputKey> inputKeys;
+
+	public enum Inputs {interact};
+	
 	private void Start() {
 		inputMan = this;
 		if (screenFade == null)
@@ -45,16 +63,21 @@ public class InputManager : MonoBehaviour {
 		fwd = pointer.transform.TransformDirection(Vector3.forward);
 		text_trigger.text = "" + OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger);
 
-		if (OVRInput.IsControllerConnected(OVRInput.Controller.RTrackedRemote)) { //making sure its the right one.
-			if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger)) { //If we have the trigger down.
+		if (ButtonWePressed(Inputs.interact)) {
+			text_debug.text = ("working!!");
+		} else {
+			text_debug.text = ("not working!!");
+		}
 
+		//if (OVRInput.IsControllerConnected(OVRInput.Controller.RTrackedRemote)) { //making sure its the right one.
+			//if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetDown(OVRInput.Button.One)) { //If we have the trigger down.
+			if (ButtonWePressed(Inputs.interact)) {
 				//TODO layermask
 				if (objectToMove == null) { //Already have an object so dont have to fire again.
 					RaycastHit hitInfo;
 
 					if (Physics.Raycast(pointer.transform.position, fwd, out hitInfo, Mathf.Infinity, LayerMask.GetMask("Interactable"))) {
 
-						
 						if (hitInfo.transform.tag == "Player"){
 							PlayerUI = hitInfo.transform.GetComponent<PlayerStatusUI>();
 							PlayerUI.CheckTriggerPress();
@@ -78,7 +101,7 @@ public class InputManager : MonoBehaviour {
 							return;
 						}
 
-						text_debug.text = "Currently Hitting: " + hitInfo.transform.name;
+						//text_debug.text = "Currently Hitting: " + hitInfo.transform.name;
 						objectToMove = hitInfo.transform.gameObject;
 						objectToMove.GetComponent<Rigidbody>().isKinematic = true;
 						pointerStick.SetActive(false);
@@ -110,12 +133,34 @@ public class InputManager : MonoBehaviour {
 
 			//To see the rotational debug stuff.
 			text_rotation.text = "Q: " + OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote) + "\n" + "V: " + OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote).eulerAngles;
-		}
+		//}
 	}
 
 	public void MoveCamera() {
 		transform.position = cameraTargetPos;
 		//animator.SetTrigger("FadeOut");
 	}
-}
 
+	//might be stupid and not work at all and super resource intensive but we're gonna do it anyway.
+	public bool ButtonWePressed(Inputs input) {
+		InputKey inputKey = new InputKey();
+
+		for (int i = 0; i < inputKeys.Count; i++) {
+			if(inputKeys[i].input == input) {
+				inputKey = inputKeys[i];
+			}
+		}
+
+		if (inputKey.getDown) {
+			if (OVRInput.GetDown(inputKey.ocGO) || OVRInput.GetDown(inputKey.ocRift)) {
+				return true;
+			}
+		} else {
+			if (OVRInput.Get(inputKey.ocGO) || OVRInput.Get(inputKey.ocRift)) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+}
