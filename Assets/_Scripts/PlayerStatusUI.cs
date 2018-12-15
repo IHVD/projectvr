@@ -10,6 +10,7 @@ public class PlayerStatusUI : MonoBehaviour {
 	public string displayDoing;
 	public Text theName;
 	public Image theButton;
+	public Image theBackground;
 	public Text theButtonText;
 	public Text doing;
 	public bool displayInfo = false;
@@ -21,6 +22,7 @@ public class PlayerStatusUI : MonoBehaviour {
 		theButtonText = GameObject.Find("ButtonText").GetComponent<Text>();
 		doing = GameObject.Find("Doing").GetComponent<Text>();
 		theButton = GameObject.Find("Button").GetComponent<Image>();
+		theBackground = GameObject.Find("Background").GetComponent<Image>();
 		removePlayerStatus ();
 	}
 
@@ -41,12 +43,15 @@ public class PlayerStatusUI : MonoBehaviour {
 			doing.gameObject.SetActive(true);
 
 			theButton.gameObject.SetActive(true);
+
+			theBackground.gameObject.SetActive(true);
 		}
 		else{
 			theName.gameObject.SetActive(false);
 			theButtonText.gameObject.SetActive(false);
 			theButton.gameObject.SetActive(false);
 			doing.gameObject.SetActive(false);
+			theBackground.gameObject.SetActive(false);
 		}
 	}
 }
