@@ -8,8 +8,8 @@ public class InputKey {
 
 	public bool getDown;
 	public InputManager.Inputs input;
-	public OVRInput.Button ocGO; //button to check
-	public OVRInput.Button ocRift; //button to check
+	public OVRInput.Button ocGO; //Go button to check
+	public OVRInput.Button ocRift; //Rift button to check
 	public bool usesAxis;
 	public OVRInput.Axis1D ocGoAx; //axis button to check
 	public OVRInput.Axis1D ocRiftAx; //axis button to check
@@ -50,7 +50,7 @@ public class InputManager : MonoBehaviour {
 	[Header("Input")]
 	public List<InputKey> inputKeys;
 
-	public enum Inputs {interact};
+	public enum Inputs {interact}; //possible actions / interactions that we can do.
 	
 	private void Start() {
 		inputMan = this;
@@ -94,7 +94,7 @@ public class InputManager : MonoBehaviour {
 							return;
 						}
 
-						if (hitInfo.transform.tag == "ground") { //teleport
+						if (hitInfo.transform.tag == "Teleport") { //teleport
 							cameraTargetPos = hitInfo.point + hitInfo.normal * cameraHeight;
 							screenFade.StartCoroutine(screenFade.Fade(1, 0, 0.5f));
 							MoveCamera();

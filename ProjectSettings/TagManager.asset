@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ground
   - Fumehood
+  - Teleport
   layers:
   - Default
   - TransparentFX
