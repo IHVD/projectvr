@@ -1,22 +1,58 @@
 fileFormatVersion: 2
-guid: 057571c24e89b7746a61f53288772730
+guid: ce6065d0a0933e946b1e5dee456dc874
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: Gas_faucets
-    100002: Gas_holder
-    100004: //RootNode
-    400000: Gas_faucets
-    400002: Gas_holder
-    400004: //RootNode
-    2100000: Gas_faucetsMat
-    2100002: Gas_holderMat
-    2300000: Gas_faucets
-    2300002: Gas_holder
-    3300000: Gas_faucets
-    3300002: Gas_holder
-    4300000: Gas_faucets
-    4300002: Gas_holder
+    100000: Box001
+    100002: Box002
+    100004: Box003
+    100006: Box005
+    100008: Cylinder001
+    100010: Cylinder002
+    100012: Cylinder003
+    100014: Cylinder004
+    100016: //RootNode
+    400000: Box001
+    400002: Box002
+    400004: Box003
+    400006: Box005
+    400008: Cylinder001
+    400010: Cylinder002
+    400012: Cylinder003
+    400014: Cylinder004
+    400016: //RootNode
+    2100000: Box001Mat
+    2100002: Box002Mat
+    2100004: Box003Mat
+    2100006: Box005Mat
+    2100008: Cylinder001Mat
+    2100010: Cylinder002Mat
+    2100012: Cylinder003Mat
+    2100014: Cylinder004Mat
+    2300000: Box001
+    2300002: Box002
+    2300004: Box003
+    2300006: Box005
+    2300008: Cylinder001
+    2300010: Cylinder002
+    2300012: Cylinder003
+    2300014: Cylinder004
+    3300000: Box001
+    3300002: Box002
+    3300004: Box003
+    3300006: Box005
+    3300008: Cylinder001
+    3300010: Cylinder002
+    3300012: Cylinder003
+    3300014: Cylinder004
+    4300000: Box001
+    4300002: Box002
+    4300004: Box003
+    4300006: Box005
+    4300008: Cylinder001
+    4300010: Cylinder002
+    4300012: Cylinder003
+    4300014: Cylinder004
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -48,7 +84,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.05
+    globalScale: 0.02
     meshCompression: 0
     addColliders: 0
     importVisibility: 1
