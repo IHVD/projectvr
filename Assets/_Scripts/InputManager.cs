@@ -97,7 +97,7 @@ public class InputManager : MonoBehaviour {
 					}
 
 					if (hitInfo.transform.tag == "Teleport") { //teleport
-						cameraTargetPos = hitInfo.point + hitInfo.normal * cameraHeight;
+						cameraTargetPos = new Vector3(hitInfo.transform.position.x, cameraHeight, hitInfo.transform.position.z);
 						screenFade.StartCoroutine(screenFade.Fade(1, 0, 0.5f));
 						MoveCamera();
 						text_debug.text = "should teleport";

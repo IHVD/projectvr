@@ -19,6 +19,8 @@ public class Experiment : MonoBehaviour {
 	#region Experiment Local Variables
 	public float experimentTime;
 	public float experimentFailureProbability; //percentage
+	float experimentFailureTimer;
+
 	public bool experimentGoingWrong;
 	public bool allRequirementsPresent;
 	#endregion
@@ -28,14 +30,15 @@ public class Experiment : MonoBehaviour {
 			experimentController = GameObject.FindGameObjectWithTag("GameController").GetComponent<ExperimentController>();
 		}
 
+		experimentFailureTimer = experimentController.checkTimer;
 		requirementsPresent.Capacity = requirements.Count; //should set the list to x requirements.
 	}
 
 	public void Update() {
 		//checks every second for failure.
-		if(experimentController.checkTimer < Time.time) {
+		if(experimentFailureTimer < Time.time) {
 			CheckForFailure();
-			experimentController.checkTimer = (int)Time.time + 1f;
+			experimentFailureTimer = (int)Time.time + 1f;
 		}
 	}
 

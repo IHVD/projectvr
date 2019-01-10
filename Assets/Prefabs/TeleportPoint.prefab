@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33410523376427630}
   - component: {fileID: 23494523444344770}
   - component: {fileID: 65798254590392256}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Teleport
   m_Icon: {fileID: 0}
