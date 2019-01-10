@@ -55,6 +55,6 @@ public class GameVariables : MonoBehaviour {
 			downloadedVariables.Add(temp[0], int.Parse(temp[1]));
 		}
 
-		GameController.gCont.ApplySettings();
+		//GameController.gCont.ApplySettings();
 	}
 }

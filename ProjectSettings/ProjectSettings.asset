@@ -244,7 +244,7 @@ PlayerSettings:
   AndroidTargetArchitectures: 5
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: D:/ProjectVR/key.keystore
+  AndroidKeystoreName: F:/ProjectVR/key.keystore
   AndroidKeyaliasName: projectvr_tobuild
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 1

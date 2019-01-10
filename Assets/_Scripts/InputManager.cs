@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 [System.Serializable]
 public class InputKey {
@@ -71,43 +73,55 @@ public class InputManager : MonoBehaviour {
 
 		//if (OVRInput.IsControllerConnected(OVRInput.Controller.RTrackedRemote)) { //making sure its the right one.
 			//if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetDown(OVRInput.Button.One)) { //If we have the trigger down.
-			if (ButtonWePressed(Inputs.interact)) {
-				//TODO layermask
-				if (objectToMove == null) { //Already have an object so dont have to fire again.
-					RaycastHit hitInfo;
+		if (ButtonWePressed(Inputs.interact)) {
+			//TODO layermask
+			if (objectToMove == null) { //Already have an object so dont have to fire again.
+				RaycastHit hitInfo;
 
-					if (Physics.Raycast(pointer.transform.position, fwd, out hitInfo, Mathf.Infinity, LayerMask.GetMask("Interactable"))) {
+				if (Physics.Raycast(pointer.transform.position, fwd, out hitInfo, Mathf.Infinity, LayerMask.GetMask("Interactable"))) {
 
-						if (hitInfo.transform.tag == "Player"){
-							PlayerUI = hitInfo.transform.GetComponent<PlayerStatusUI>();
-							PlayerUI.CheckTriggerPress();
-							PlayerUI.removePlayerStatus();
-							return;
-						}
-						
-						if (hitInfo.transform.tag == "Fumehood") { //clicking the fumehood :P
-							if(hitInfo.transform.GetComponent<FumehoodSliderScript>() != null){
-								fumeSlider = hitInfo.transform.GetComponent<FumehoodSliderScript>();
-								//do function in fumehoodsliderscript that moves that glass.	
-								fumeSlider.GlassSlide();
-							}
-							return;
-						}
-
-						if (hitInfo.transform.tag == "Teleport") { //teleport
-							cameraTargetPos = hitInfo.point + hitInfo.normal * cameraHeight;
-							screenFade.StartCoroutine(screenFade.Fade(1, 0, 0.5f));
-							MoveCamera();
-							return;
-						}
-
-						//text_debug.text = "Currently Hitting: " + hitInfo.transform.name;
-						objectToMove = hitInfo.transform.gameObject;
-						objectToMove.GetComponent<Rigidbody>().isKinematic = true;
-						pointerStick.SetActive(false);
-
+					if (hitInfo.transform.tag == "Player"){
+						PlayerUI = hitInfo.transform.GetComponent<PlayerStatusUI>();
+						PlayerUI.CheckTriggerPress();
+						PlayerUI.removePlayerStatus();
+						return;
 					}
+					
+					if (hitInfo.transform.tag == "Fumehood") { //clicking the fumehood :P
+						if(hitInfo.transform.GetComponent<FumehoodSliderScript>() != null){
+							fumeSlider = hitInfo.transform.GetComponent<FumehoodSliderScript>();
+							//do function in fumehoodsliderscript that moves that glass.	
+							fumeSlider.GlassSlide();
+						}
+						return;
+					}
+
+					if (hitInfo.transform.tag == "Teleport") { //teleport
+						cameraTargetPos = hitInfo.point + hitInfo.normal * cameraHeight;
+						screenFade.StartCoroutine(screenFade.Fade(1, 0, 0.5f));
+						MoveCamera();
+						text_debug.text = "should teleport";
+						return;
+					}
+
+					if(hitInfo.transform.tag == "UIButton") { //ui buttons
+						Button tempButton = hitInfo.transform.GetComponent<Button>();
+						IPointerClickHandler clickHandler = hitInfo.transform.GetComponent<IPointerClickHandler>();
+						PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
+						clickHandler.OnPointerClick(pointerEventData);
+					}
+
+					if(hitInfo.transform.tag == "ground") {
+						return;
+					}
+
+					//text_debug.text = "Currently Hitting: " + hitInfo.transform.name;
+					objectToMove = hitInfo.transform.gameObject;
+					objectToMove.GetComponent<Rigidbody>().isKinematic = true;
+					pointerStick.SetActive(false);
+
 				}
+			}
 				
 				Quaternion controllerRotation = OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote);
 
