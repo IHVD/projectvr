@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33219688053028904}
   - component: {fileID: 23432077287337314}
   - component: {fileID: 114169794953852400}
+  - component: {fileID: 65414488569320014}
   m_Layer: 9
   m_Name: cupboard_door_left
   m_TagString: Fumehood
@@ -1165,6 +1166,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1233553540543388}
   m_Mesh: {fileID: 4300022, guid: ebb258187718d414f948f870ac5d31ae, type: 3}
+--- !u!65 &65414488569320014
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1012450144396292}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 47.24411, y: 31.496098, z: 0.3937007}
+  m_Center: {x: 20.605755, y: 16.809448, z: 14.365953}
 --- !u!65 &65779605477580270
 BoxCollider:
   m_ObjectHideFlags: 1

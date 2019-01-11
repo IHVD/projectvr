@@ -6,6 +6,10 @@ TagManager:
   tags:
   - ground
   - Fumehood
+  - UIButton
+  - UIButtonGlasses
+  - UIButtonCoat
+  - UIButtonGloves
   layers:
   - Default
   - TransparentFX

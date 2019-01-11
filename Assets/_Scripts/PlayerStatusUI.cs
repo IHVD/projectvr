@@ -6,12 +6,18 @@ using UnityEngine.UI;
 public class PlayerStatusUI : MonoBehaviour {
 
 	public string displayText;
-	public string displayButton;
+	public string displayButtonGloves;
+	public string displayButtonGlasses;
+	public string displayButtonCoat;
 	public string displayDoing;
 	public Text theName;
-	public Image theButton;
+	public Image theButtonGloves;
+	public Image theButtonGlasses;
+	public Image theButtonCoat;
 	public Image theBackground;
-	public Text theButtonText;
+	public Text theGlovesText;
+	public Text theGlassesText;
+	public Text theCoatText;
 	public Text doing;
 	public bool displayInfo = false;
 	public Camera my_camera;
@@ -24,10 +30,20 @@ public class PlayerStatusUI : MonoBehaviour {
 			theName = transform.GetChild(1).GetComponent<Text>();
 		if(doing == null)
 			doing = transform.GetChild(2).GetComponent<Text>();
-		if(theButton == null)
-			theButton = transform.GetChild(3).GetComponent<Image>();
-		if(theButtonText == null) 
-			theButtonText = transform.GetChild(3).GetChild(0).GetComponent<Text>();
+		if(theButtonGloves == null)
+			theButtonGloves = transform.GetChild(3).GetComponent<Image>();
+		if(theButtonGlasses == null)
+			theButtonGlasses = transform.GetChild(4).GetComponent<Image>();
+		if(theButtonCoat == null)
+			theButtonCoat = transform.GetChild(5).GetComponent<Image>();
+		if(theGlovesText == null) 
+			theGlovesText = transform.GetChild(3).GetChild(0).GetComponent<Text>();
+		if(theGlassesText == null) 
+			theGlassesText = transform.GetChild(4).GetChild(0).GetComponent<Text>();
+		if(theCoatText == null) 
+			theCoatText = transform.GetChild(5).GetChild(0).GetComponent<Text>();
+		
+			
 		removePlayerStatus ();
 	}
 
@@ -41,20 +57,32 @@ public class PlayerStatusUI : MonoBehaviour {
 			theName.text = displayText;
 			theName.gameObject.SetActive(true);
 
-			theButtonText.text = displayButton;
-			theButtonText.gameObject.SetActive(true);
+			theGlovesText.text = displayButtonGloves;
+			theGlovesText.gameObject.SetActive(true);
+
+			theGlassesText.text = displayButtonGlasses;
+			theGlassesText.gameObject.SetActive(true);
+
+			theCoatText.text = displayButtonCoat;
+			theCoatText.gameObject.SetActive(true);
 
 			doing.text = displayDoing;
 			doing.gameObject.SetActive(true);
 
-			theButton.gameObject.SetActive(true);
+			theButtonGloves.gameObject.SetActive(true);
+			theButtonGlasses.gameObject.SetActive(true);
+			theButtonCoat.gameObject.SetActive(true);
 
 			theBackground.gameObject.SetActive(true);
 		}
 		else{
 			theName.gameObject.SetActive(false);
-			theButtonText.gameObject.SetActive(false);
-			theButton.gameObject.SetActive(false);
+			theGlovesText.gameObject.SetActive(false);
+			theGlassesText.gameObject.SetActive(false);
+			theCoatText.gameObject.SetActive(false);
+			theButtonGloves.gameObject.SetActive(false);
+			theButtonGlasses.gameObject.SetActive(false);
+			theButtonCoat.gameObject.SetActive(false);
 			doing.gameObject.SetActive(false);
 			theBackground.gameObject.SetActive(false);
 		}

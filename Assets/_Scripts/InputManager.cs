@@ -34,6 +34,10 @@ public class InputManager : MonoBehaviour {
 	//Animator animator;
 	public int cameraHeight;
 
+	bool GlovesOn = false;
+	bool CoatOn = false;
+	bool GlassesOn = false;
+
 	private void Start() {
 		inputMan = this;
 		if (screenFade == null)
@@ -75,6 +79,51 @@ public class InputManager : MonoBehaviour {
 							cameraTargetPos = hitInfo.point + hitInfo.normal * cameraHeight;
 							screenFade.StartCoroutine(screenFade.Fade(1, 0, 0.5f));
 							MoveCamera();
+							return;
+						}
+
+						//------------------FOR GLOVES-----------------------//
+						if (hitInfo.transform.tag == "UIButtonGloves" && GlovesOn == false){
+							text_debug.text = "Currently Hitting: " + hitInfo.transform.name;
+							GlovesOn = true;
+							GetComponent<Image>().color = Color.black;
+							return;
+						}
+						else if(hitInfo.transform.tag == "UIButtonGloves" && GlovesOn == true)
+						{
+							text_debug.text = "Currently Hitting: " + hitInfo.transform.name;
+							GlovesOn = false;
+							GetComponent<Image>().color = Color.white;
+							return;
+						}
+
+						//------------------FOR GLASSES-----------------------//
+						if (hitInfo.transform.tag == "UIButtonGlasses" && GlassesOn == false){
+							text_debug.text = "Currently Hitting: " + hitInfo.transform.name;
+							GlassesOn = true;
+							GetComponent<Image>().color = Color.black;
+							return;
+						}
+						else if(hitInfo.transform.tag == "UIButtonGlasses" && GlassesOn == true)
+						{
+							text_debug.text = "Currently Hitting: " + hitInfo.transform.name;
+							GlassesOn = false;
+							GetComponent<Image>().color = Color.white;
+							return;
+						}
+
+						//------------------FOR COATS-----------------------//
+						if (hitInfo.transform.tag == "UIButtonCoat" && CoatOn == false){
+							text_debug.text = "Currently Hitting: " + hitInfo.transform.name;
+							CoatOn = true;
+							GetComponent<Image>().color = Color.black;
+							return;
+						}
+						else if(hitInfo.transform.tag == "UIButtonCoat" && CoatOn == true)
+						{
+							text_debug.text = "Currently Hitting: " + hitInfo.transform.name;
+							CoatOn = false;
+							GetComponent<Image>().color = Color.white;
 							return;
 						}
 
