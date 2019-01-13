@@ -42,6 +42,7 @@ public class InputManager : MonoBehaviour {
 	LayerMask layerMask = 1 << 9;
 	Vector3 fwd;
 	public Vector3 cameraTargetPos;
+	public GameObject pointerHit;
 
 	[Header("Fading")]
 	//public FadeController fCont;
@@ -49,18 +50,15 @@ public class InputManager : MonoBehaviour {
 	//Animator animator;
 	public int cameraHeight;
 
-<<<<<<< HEAD
 	bool GlovesOn = false;
 	bool CoatOn = false;
 	bool GlassesOn = false;
 
-=======
 	[Header("Input")]
 	public List<InputKey> inputKeys;
 
 	public enum Inputs {interact}; //possible actions / interactions that we can do.
 	
->>>>>>> ed772cd9c12e3379093ff5e698f677ff5f98161c
 	private void Start() {
 		inputMan = this;
 		if (screenFade == null)
@@ -87,10 +85,14 @@ public class InputManager : MonoBehaviour {
 
 				if (Physics.Raycast(pointer.transform.position, fwd, out hitInfo, Mathf.Infinity, LayerMask.GetMask("Interactable"))) {
 
+					pointerHit.transform.position = hitInfo.point;
+					pointerHit.transform.rotation = hitInfo.transform.rotation.normalized;
+
 					if (hitInfo.transform.tag == "Player"){
 						PlayerUI = hitInfo.transform.GetComponent<PlayerStatusUI>();
 						PlayerUI.CheckTriggerPress();
 						PlayerUI.removePlayerStatus();
+						Debug.Log("speler status");
 						return;
 					}
 					
@@ -110,8 +112,7 @@ public class InputManager : MonoBehaviour {
 						text_debug.text = "should teleport";
 						return;
 					}
-
-<<<<<<< HEAD
+						/*
 						//------------------FOR GLOVES-----------------------//
 						if (hitInfo.transform.tag == "UIButtonGloves" && GlovesOn == false){
 							text_debug.text = "Currently Hitting: " + hitInfo.transform.name;
@@ -157,24 +158,20 @@ public class InputManager : MonoBehaviour {
 							return;
 						}
 
-						text_debug.text = "Currently Hitting: " + hitInfo.transform.name;
-						objectToMove = hitInfo.transform.gameObject;
-						objectToMove.GetComponent<Rigidbody>().isKinematic = true;
-						pointerStick.SetActive(false);
-=======
+						*/
 					if(hitInfo.transform.tag == "UIButton") { //ui buttons
 						Button tempButton = hitInfo.transform.GetComponent<Button>();
-						IPointerClickHandler clickHandler = hitInfo.transform.GetComponent<IPointerClickHandler>();
+						IPointerClickHandler clickHandler = tempButton.GetComponent<IPointerClickHandler>();
 						PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
 						clickHandler.OnPointerClick(pointerEventData);
+						return;
 					}
->>>>>>> ed772cd9c12e3379093ff5e698f677ff5f98161c
 
 					if(hitInfo.transform.tag == "ground") {
 						return;
 					}
 
-					//text_debug.text = "Currently Hitting: " + hitInfo.transform.name;
+					text_debug.text = "Currently Hitting: " + hitInfo.transform.name;
 					objectToMove = hitInfo.transform.gameObject;
 					objectToMove.GetComponent<Rigidbody>().isKinematic = true;
 					pointerStick.SetActive(false);

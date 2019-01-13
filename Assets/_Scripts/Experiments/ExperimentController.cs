@@ -7,7 +7,7 @@ public class ExperimentController : MonoBehaviour {
 	public enum ExperimentType {Biological, Chemical};
 	public enum ExperimentDangers {Fire, Acid, Physical};
 	[SerializeField]
-	public enum ExperimentRequirements {Glasses, LabCoat, Gloves, HairTucked}
+	public enum ExperimentRequirements {Gloves, LabCoat, Glasses, HairTucked}
 	public enum ExperimentDifficulty {Easy, Middle, Hard};
 
 	public float checkTimer;

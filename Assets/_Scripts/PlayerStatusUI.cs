@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class PlayerStatusUI : MonoBehaviour {
 
+	public GameObject theCanvas;
+
 	public string displayText;
 	public string displayButtonGloves;
 	public string displayButtonGlasses;
@@ -54,37 +56,10 @@ public class PlayerStatusUI : MonoBehaviour {
 
 	public void removePlayerStatus(){
 		if(displayInfo == true){
-			theName.text = displayText;
-			theName.gameObject.SetActive(true);
-
-			theGlovesText.text = displayButtonGloves;
-			theGlovesText.gameObject.SetActive(true);
-
-			theGlassesText.text = displayButtonGlasses;
-			theGlassesText.gameObject.SetActive(true);
-
-			theCoatText.text = displayButtonCoat;
-			theCoatText.gameObject.SetActive(true);
-
-			doing.text = displayDoing;
-			doing.gameObject.SetActive(true);
-
-			theButtonGloves.gameObject.SetActive(true);
-			theButtonGlasses.gameObject.SetActive(true);
-			theButtonCoat.gameObject.SetActive(true);
-
-			theBackground.gameObject.SetActive(true);
+			theCanvas.SetActive(true);
 		}
 		else{
-			theName.gameObject.SetActive(false);
-			theGlovesText.gameObject.SetActive(false);
-			theGlassesText.gameObject.SetActive(false);
-			theCoatText.gameObject.SetActive(false);
-			theButtonGloves.gameObject.SetActive(false);
-			theButtonGlasses.gameObject.SetActive(false);
-			theButtonCoat.gameObject.SetActive(false);
-			doing.gameObject.SetActive(false);
-			theBackground.gameObject.SetActive(false);
+			theCanvas.SetActive(false);
 		}
 	}
 }

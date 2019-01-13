@@ -10,6 +10,7 @@ TagManager:
   - UIButtonGlasses
   - UIButtonCoat
   - UIButtonGloves
+  - Teleport
   layers:
   - Default
   - TransparentFX
@@ -46,4 +47,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Interactable
+    uniqueID: 3884356803
+    locked: 0
+  - name: UI
+    uniqueID: 4247231941
     locked: 0
