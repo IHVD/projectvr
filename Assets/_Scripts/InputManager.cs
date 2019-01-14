@@ -36,6 +36,7 @@ public class InputManager : MonoBehaviour {
 	[Header("Throwing Object")]
 	public float velocityMultiplier;
 	public GameObject objectToMove;
+	public Rigidbody objectToMoveRb;
 	Vector3 prevPos;
 
 	[Header("Raycast")]
@@ -76,17 +77,22 @@ public class InputManager : MonoBehaviour {
 			text_debug.text = ("not working!!");
 		}
 
-		//if (OVRInput.IsControllerConnected(OVRInput.Controller.RTrackedRemote)) { //making sure its the right one.
+		//raycast for the pointer thing
+		RaycastHit hit;
+		if (Physics.Raycast(pointer.transform.position, fwd, out hit, Mathf.Infinity)) { //TODO I dont want to be using a continuous raycast for this buy maybe we can anyway if it doesnt affect performance anyway
+			if(pointerHit != null)
+			pointerHit.transform.position = hit.point - hit.transform.forward * 0.01f;
+			pointerHit.transform.rotation = hit.transform.rotation.normalized;
+		}
+
+			//if (OVRInput.IsControllerConnected(OVRInput.Controller.RTrackedRemote)) { //making sure its the right one.
 			//if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetDown(OVRInput.Button.One)) { //If we have the trigger down.
-		if (ButtonWePressed(Inputs.interact)) {
+			if (ButtonWePressed(Inputs.interact)) {
 			//TODO layermask
 			if (objectToMove == null) { //Already have an object so dont have to fire again.
 				RaycastHit hitInfo;
 
-				if (Physics.Raycast(pointer.transform.position, fwd, out hitInfo, Mathf.Infinity, LayerMask.GetMask("Interactable"))) {
-
-					pointerHit.transform.position = hitInfo.point;
-					pointerHit.transform.rotation = hitInfo.transform.rotation.normalized;
+				if (Physics.Raycast(pointer.transform.position, fwd, out hitInfo, Mathf.Infinity, LayerMask.GetMask("Interactable"))) { //TODO change range
 
 					if (hitInfo.transform.tag == "Player"){
 						PlayerUI = hitInfo.transform.GetComponent<PlayerStatusUI>();
@@ -173,7 +179,10 @@ public class InputManager : MonoBehaviour {
 
 					text_debug.text = "Currently Hitting: " + hitInfo.transform.name;
 					objectToMove = hitInfo.transform.gameObject;
-					objectToMove.GetComponent<Rigidbody>().isKinematic = true;
+					objectToMoveRb = objectToMove.GetComponent<Rigidbody>();
+					if (objectToMoveRb != null) {
+						objectToMoveRb.isKinematic = true;
+					}
 					pointerStick.SetActive(false);
 
 				}
@@ -187,10 +196,10 @@ public class InputManager : MonoBehaviour {
 			} else if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger)) {
 				if (objectToMove != null) {
 					objectToMove.transform.parent = null;
-					objectToMove.GetComponent<Rigidbody>().isKinematic = false;
+					objectToMoveRb.isKinematic = false;
 
 					Vector3 currPos = objectToMove.transform.position;
-					objectToMove.GetComponent<Rigidbody>().velocity = (currPos - prevPos) / Time.deltaTime * velocityMultiplier;
+					objectToMoveRb.velocity = (currPos - prevPos) / Time.deltaTime * velocityMultiplier;
 
 					objectToMove = null;
 					pointerStick.SetActive(true);
