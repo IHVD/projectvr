@@ -60,7 +60,16 @@ public class InputManager : MonoBehaviour {
 
 	public enum Inputs {interact}; //possible actions / interactions that we can do.
 	
+	private sfxManager theSFXManager;
+	// ADDING sfxManager TO A SCRIPT: you need to add a "private sfxManager theSFXManager;" E.g. on the line above.
+	// Then adding "theSFXManager = FindObjectOfType<sfxManager>();" in the script's start function.
+	// ADDING SFX:
+	// theSFXManager.PlaySound(theSFXManager.clickSFX);
+	// Or any other sfx, which you can find in the manager script.
+	// Or by simply going to the sfxManager GameObject in the hierarchy and reading them from the left side.
+
 	private void Start() {
+		theSFXManager = FindObjectOfType<sfxManager>();
 		inputMan = this;
 		if (screenFade == null)
 			screenFade = GetComponentInChildren<OVRScreenFade>();
