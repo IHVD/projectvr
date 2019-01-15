@@ -170,6 +170,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4252995581394304}
+  - component: {fileID: 65861386266844106}
   m_Layer: 9
   m_Name: fume_hood
   m_TagString: Untagged
@@ -428,7 +429,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1402222626112242}
   m_LocalRotation: {x: -0, y: -0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -9, z: 1.5082585e-12}
+  m_LocalPosition: {x: -4.7056007, y: 3.1226718, z: -107.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4869597641687462}
@@ -1190,6 +1191,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 92.51962, y: 23.622099, z: 0.3937007}
   m_Center: {x: 0, y: 56.068645, z: 14.365953}
+--- !u!65 &65861386266844106
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1402222626112242}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 95.74, y: 101.250534, z: 30.513191}
+  m_Center: {x: 0, y: 50.125267, z: -0.59640884}
 --- !u!114 &114169794953852400
 MonoBehaviour:
   m_ObjectHideFlags: 1

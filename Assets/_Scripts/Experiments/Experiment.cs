@@ -12,6 +12,7 @@ public class Experiment : MonoBehaviour {
 	[Header("DO NOT MESS UP THE ORDER. USE THE ORDER AS DESCRIBED IN EXPERIMENTCONTROLLER!")]
 	public List<ExperimentController.ExperimentRequirements> requirements = new List<ExperimentController.ExperimentRequirements>(); //required for this experiment
 	public List<bool> requirementsPresent = new List<bool>();
+	public List<bool> dangersPresent = new List<bool>(); //SET IN THE INSPECTOR
 	public ExperimentController.ExperimentType type;
 	public ExperimentController.ExperimentDifficulty difficulty;
 	#endregion
@@ -25,7 +26,7 @@ public class Experiment : MonoBehaviour {
 	public bool allRequirementsPresent;
 	#endregion
 
-	public List<StudentScript> students = new List<StudentScript>();
+	public List<Student> students = new List<Student>();
 
 	//In ToggleRequirement
 
@@ -36,7 +37,6 @@ public class Experiment : MonoBehaviour {
 		}
 
 		experimentFailureTimer = experimentController.checkTimer;
-		//requirementsPresent.Capacity = requirements.Count; //should set the list to x requirements.
 	}
 
 	public void Update() {
@@ -56,21 +56,32 @@ public class Experiment : MonoBehaviour {
 	public void ToggleRequirement(int requirement) { 
 		if (requirementsPresent[requirement]) {
 			requirementsPresent[requirement] = false;
-			foreach(StudentScript student in students){
+			foreach(Student student in students){
     			student.ActivateRequirement(requirement, false);
 			}
 		} else {
 			requirementsPresent[requirement] = true;
-			foreach(StudentScript student in students){
+			foreach(Student student in students){
     			student.ActivateRequirement(requirement, true);
 			}
 		}
 
+		//TODO check if the requirements necessary are also present, not just if all are.
 		if (requirementsPresent.All (x => x)) { //if all true
 			allRequirementsPresent = true;
 		} else {
 			//every requirement is not present!!
 			allRequirementsPresent = false;
+		}
+	}
+
+	//Toggles if the person should be aware of dangers.
+	public void ToggleDanger(int danger) {
+		if (dangersPresent[danger]) {
+			dangersPresent[danger] = false;
+			
+		} else {
+			dangersPresent[danger] = true;
 		}
 	}
 
