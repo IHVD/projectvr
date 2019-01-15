@@ -79,9 +79,14 @@ public class Experiment : MonoBehaviour {
 	public void ToggleDanger(int danger) {
 		if (dangersPresent[danger]) {
 			dangersPresent[danger] = false;
-			
+			foreach (Student student in students) {
+				student.ActivateDanger(danger, false);
+			}
 		} else {
 			dangersPresent[danger] = true;
+			foreach (Student student in students) {
+				student.ActivateDanger(danger, true);
+			}
 		}
 	}
 
