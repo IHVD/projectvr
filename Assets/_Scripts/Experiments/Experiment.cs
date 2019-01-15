@@ -8,11 +8,13 @@ public class Experiment : MonoBehaviour {
 	public ExperimentController experimentController; //TODO not sure if needed.
 
 	#region Experiment Controller Variables
+	[Header("DO NOT CHANGE ORDER OF VALUES IN DANGER/REQUIRE!")]
 	public List<ExperimentController.ExperimentDangers> dangers = new List<ExperimentController.ExperimentDangers>();
-	[Header("DO NOT MESS UP THE ORDER. USE THE ORDER AS DESCRIBED IN EXPERIMENTCONTROLLER!")]
-	public List<ExperimentController.ExperimentRequirements> requirements = new List<ExperimentController.ExperimentRequirements>(); //required for this experiment
-	public List<bool> requirementsPresent = new List<bool>();
+	public List<ExperimentController.ExperimentRequirements> requirements = new List<ExperimentController.ExperimentRequirements>(); //necessary requirements for this experiment
+
+	public List<bool> requirementsPresent; //should be equal to how many requirements there are.
 	public List<bool> dangersPresent = new List<bool>(); //SET IN THE INSPECTOR
+
 	public ExperimentController.ExperimentType type;
 	public ExperimentController.ExperimentDifficulty difficulty;
 	#endregion
@@ -26,10 +28,7 @@ public class Experiment : MonoBehaviour {
 	public bool allRequirementsPresent;
 	#endregion
 
-	public List<Student> students = new List<Student>();
-
-	//In ToggleRequirement
-
+	public List<Student> students = new List<Student>(); //local list of students to address.
 
 	private void Start() {
 		if (experimentController == null) {
@@ -37,6 +36,8 @@ public class Experiment : MonoBehaviour {
 		}
 
 		experimentFailureTimer = experimentController.checkTimer;
+
+		requirementsPresent = new List<bool>(requirements.Count);
 	}
 
 	public void Update() {
@@ -47,6 +48,7 @@ public class Experiment : MonoBehaviour {
 		}
 	}
 
+	//TOOD make this.
 	public void CheckForFailure() {
 		//based on requirements, danger, type etc, it should be more or less difficult to complete the experiment.
 		
@@ -66,8 +68,7 @@ public class Experiment : MonoBehaviour {
 			}
 		}
 
-		//TODO check if the requirements necessary are also present, not just if all are.
-		if (requirementsPresent.All (x => x)) { //if all true
+		if (requirementsPresent.All(x => x)) { //if all true
 			allRequirementsPresent = true;
 		} else {
 			//every requirement is not present!!
@@ -92,7 +93,7 @@ public class Experiment : MonoBehaviour {
 
 	public void ExperimentStart() {
 		if (allRequirementsPresent) {
-			
+			//start the experiment!
 		}
 	}
 }
