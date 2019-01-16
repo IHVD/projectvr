@@ -125,9 +125,6 @@ public class InputManager : MonoBehaviour {
 
 					if(hitInfo.transform.tag == "UIButton") { //ui buttons
 						Button tempButton = hitInfo.transform.GetComponent<Button>();
-						if (tempButton.transform.parent.parent.parent.GetComponent<Student>().myExperiment.experimentStarted) {
-							return;
-						}
 						IPointerClickHandler clickHandler = tempButton.GetComponent<IPointerClickHandler>();
 						PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
 						clickHandler.OnPointerClick(pointerEventData);
@@ -138,24 +135,19 @@ public class InputManager : MonoBehaviour {
 						return;
 					}
 
+					text_debug.text = "Currently Hitting: " + hitInfo.transform.name;
+					objectToMove = hitInfo.transform.gameObject;
+					objectToMoveRb = objectToMove.GetComponent<Rigidbody>();
 
-					Debug.Log(hitInfo.transform);
-						text_debug.text = "Currently Hitting: " + hitInfo.transform.name;
-						objectToMove = hitInfo.transform.gameObject;
-						objectToMoveRb = objectToMove.GetComponent<Rigidbody>();
-
-						if (objectToMoveRb != null) {
-							objectToMoveRb.isKinematic = true;
-						}
-					
+					if (objectToMoveRb != null) {
+						objectToMoveRb.isKinematic = true;
+					}
 				}
+			} else { 
+				Quaternion controllerRotation = OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote);
+				//MOVE THE OBJECT
+				objectToMove.transform.parent = pointerStick.transform.parent;
 			}
-			
-			Quaternion controllerRotation = OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote);
-
-			//MOVE THE OBJECT
-			objectToMove.transform.parent = pointerStick.transform.parent;
-		
 		} else if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger)) {
 			if (objectToMove != null) {
 				objectToMove.transform.parent = null;

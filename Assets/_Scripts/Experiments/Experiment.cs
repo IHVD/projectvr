@@ -12,7 +12,7 @@ public class Experiment : MonoBehaviour {
 	public List<ExperimentController.ExperimentDangers> dangers = new List<ExperimentController.ExperimentDangers>();
 	public List<ExperimentController.ExperimentRequirements> requirements = new List<ExperimentController.ExperimentRequirements>(); //necessary requirements for this experiment
 
-	public List<bool> requirementsPresent = new List<bool>(3); //should be equal to how many requirements there are.
+	public List<bool> requirementsPresent = new List<bool>(3); //TODO this probably breaks the ExperimentStart loop
 	public List<bool> dangersPresent = new List<bool>(); //SET IN THE INSPECTOR
 
 	public ExperimentController.ExperimentType type;
@@ -58,9 +58,9 @@ public class Experiment : MonoBehaviour {
 
 	//toggles the requirement if it's true or false.
 	public void ToggleRequirement(int requirement) {
-
-		Debug.Log(requirement);
-		Debug.Log(requirementsPresent.Count);
+		if (experimentStarted) {
+			return;
+		}
 
 		if (requirementsPresent[requirement]) {
 			requirementsPresent[requirement] = false;
@@ -84,6 +84,10 @@ public class Experiment : MonoBehaviour {
 
 	//Toggles if the person should be aware of dangers.
 	public void ToggleDanger(int danger) {
+		if (experimentStarted) {
+			return;
+		}
+
 		if (dangersPresent[danger]) {
 			dangersPresent[danger] = false;
 			foreach (Student student in students) {
@@ -97,7 +101,7 @@ public class Experiment : MonoBehaviour {
 		}
 	}
 
-	public void ExperimentStart() {
+	public void ExperimentStart() { //need to check this because this probably doesn't work, array doesn't resize correctly.
 		if (allRequirementsPresent) {
 			experimentStarted = true;
 		}
