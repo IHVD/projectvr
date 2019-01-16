@@ -561,7 +561,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1456837911462740}
   m_LocalRotation: {x: -0, y: -0.661547, z: -0, w: 0.74990374}
-  m_LocalPosition: {x: 0, y: -1.7065923, z: 0}
+  m_LocalPosition: {x: 4.29, y: -1.7065923, z: -0.54}
   m_LocalScale: {x: 1.0000002, y: 1, z: 1.0000002}
   m_Children:
   - {fileID: 224706570190676970}
@@ -1248,6 +1248,7 @@ MonoBehaviour:
   studentCard: {fileID: 1521638938848406}
   buttons_requirement: {fileID: 1175688222539932}
   buttons_danger: {fileID: 1757286854909536}
+  originalPosition: {x: 0, y: 0, z: 0}
   dangerTextures:
   - {fileID: 21300000, guid: 65cb52c5136332d4e8aa777bfb8aa3dc, type: 3}
   - {fileID: 21300000, guid: 19e51148dd5a3604497e7a54b4e82cce, type: 3}
@@ -1255,6 +1256,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: cf13b10c81591954eb518596a06894b6, type: 3}
   - {fileID: 21300000, guid: c0ba93401ec1e8b4cb477846c759a162, type: 3}
   - {fileID: 21300000, guid: 02a834206fb977f4abddc3b33a86838d, type: 3}
+  currentDanger: 0
+  myExperiment: {fileID: 0}
 --- !u!114 &114171648761387616
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1720,20 +1723,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   theCanvas: {fileID: 1521638938848406}
-  displayText: 
-  displayButtonGloves: 
-  displayButtonGlasses: 
-  displayButtonCoat: 
-  displayDoing: 
-  theName: {fileID: 0}
-  theButtonGloves: {fileID: 0}
-  theButtonGlasses: {fileID: 0}
-  theButtonCoat: {fileID: 0}
-  theBackground: {fileID: 0}
-  theGlovesText: {fileID: 0}
-  theGlassesText: {fileID: 0}
-  theCoatText: {fileID: 0}
-  doing: {fileID: 0}
   displayInfo: 1
   my_camera: {fileID: 0}
 --- !u!114 &114647310307273298

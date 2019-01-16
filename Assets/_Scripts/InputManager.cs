@@ -125,6 +125,9 @@ public class InputManager : MonoBehaviour {
 
 					if(hitInfo.transform.tag == "UIButton") { //ui buttons
 						Button tempButton = hitInfo.transform.GetComponent<Button>();
+						if (tempButton.transform.parent.parent.parent.GetComponent<Student>().myExperiment.experimentStarted) {
+							return;
+						}
 						IPointerClickHandler clickHandler = tempButton.GetComponent<IPointerClickHandler>();
 						PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
 						clickHandler.OnPointerClick(pointerEventData);

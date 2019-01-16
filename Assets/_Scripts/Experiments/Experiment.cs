@@ -26,6 +26,8 @@ public class Experiment : MonoBehaviour {
 
 	public bool experimentGoingWrong;
 	public bool allRequirementsPresent;
+
+	public bool experimentStarted;
 	#endregion
 
 	public List<Student> students = new List<Student>(); //local list of students to address.
@@ -36,17 +38,15 @@ public class Experiment : MonoBehaviour {
 		}
 
 		experimentFailureTimer = experimentController.checkTimer;
-
-		//requirementsPresent = new List<bool>(requirements.Capacity);
-		//requirementsPresent = new List<bool>(3);
-		Debug.Log("started with " + requirementsPresent.Count + " while it should be " + requirements.Capacity + " or maybe " + requirements.Count);
 	}
 
 	public void Update() {
 		//checks every second for failure.
-		if(experimentFailureTimer < Time.time) {
-			CheckForFailure();
-			experimentFailureTimer = (int)Time.time + 1f;
+		if (experimentStarted) {
+			if (experimentFailureTimer < Time.time) {
+				CheckForFailure();
+				experimentFailureTimer = (int)Time.time + 1f;
+			}
 		}
 	}
 
@@ -99,7 +99,7 @@ public class Experiment : MonoBehaviour {
 
 	public void ExperimentStart() {
 		if (allRequirementsPresent) {
-			//start the experiment!
+			experimentStarted = true;
 		}
 	}
 }
