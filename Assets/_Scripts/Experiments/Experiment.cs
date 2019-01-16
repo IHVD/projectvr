@@ -12,7 +12,7 @@ public class Experiment : MonoBehaviour {
 	public List<ExperimentController.ExperimentDangers> dangers = new List<ExperimentController.ExperimentDangers>();
 	public List<ExperimentController.ExperimentRequirements> requirements = new List<ExperimentController.ExperimentRequirements>(); //necessary requirements for this experiment
 
-	public List<bool> requirementsPresent; //should be equal to how many requirements there are.
+	public List<bool> requirementsPresent = new List<bool>(3); //should be equal to how many requirements there are.
 	public List<bool> dangersPresent = new List<bool>(); //SET IN THE INSPECTOR
 
 	public ExperimentController.ExperimentType type;
@@ -37,7 +37,9 @@ public class Experiment : MonoBehaviour {
 
 		experimentFailureTimer = experimentController.checkTimer;
 
-		requirementsPresent = new List<bool>(requirements.Count);
+		//requirementsPresent = new List<bool>(requirements.Capacity);
+		//requirementsPresent = new List<bool>(3);
+		Debug.Log("started with " + requirementsPresent.Count + " while it should be " + requirements.Capacity + " or maybe " + requirements.Count);
 	}
 
 	public void Update() {
@@ -55,7 +57,11 @@ public class Experiment : MonoBehaviour {
 	}
 
 	//toggles the requirement if it's true or false.
-	public void ToggleRequirement(int requirement) { 
+	public void ToggleRequirement(int requirement) {
+
+		Debug.Log(requirement);
+		Debug.Log(requirementsPresent.Count);
+
 		if (requirementsPresent[requirement]) {
 			requirementsPresent[requirement] = false;
 			foreach(Student student in students){

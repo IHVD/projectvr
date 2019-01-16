@@ -25,7 +25,7 @@ public class PlayerStatusUI : MonoBehaviour {
 	public Camera my_camera;
 
 	// Use this for initialization
-	void Start () {
+	void Start () {/*
 		if(theBackground == null)
 			theBackground = transform.GetChild(0).GetComponent<Image>();
 		if(theName == null)
@@ -45,8 +45,8 @@ public class PlayerStatusUI : MonoBehaviour {
 		if(theCoatText == null) 
 			theCoatText = transform.GetChild(5).GetChild(0).GetComponent<Text>();
 		
-			
-		removePlayerStatus ();
+			*/
+		removePlayerStatus();
 	}
 
 	public void CheckTriggerPress()
@@ -55,11 +55,12 @@ public class PlayerStatusUI : MonoBehaviour {
 	}
 
 	public void removePlayerStatus(){
-		if(displayInfo == true){
-			theCanvas.SetActive(true);
-		}
-		else{
+		if (displayInfo) {
+			displayInfo = false;
 			theCanvas.SetActive(false);
+		} else {
+			displayInfo = true;
+			theCanvas.SetActive(true);
 		}
 	}
 }
