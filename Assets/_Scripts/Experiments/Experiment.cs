@@ -14,6 +14,9 @@ public class Experiment : MonoBehaviour {
 
 	public List<bool> requirementsPresent = new List<bool>(3); //TODO this probably breaks the ExperimentStart loop
 	public List<bool> dangersPresent = new List<bool>(); //SET IN THE INSPECTOR
+	[Header("These are the ones actually needed")]
+	public List<bool> requirementsNecessary = new List<bool>(); //the ones actually needed.
+	public List<bool> dangersNecessary = new List<bool>(); //SET IN THE INSPECTOR
 
 	public ExperimentController.ExperimentType type;
 	public ExperimentController.ExperimentDifficulty difficulty;
@@ -26,11 +29,14 @@ public class Experiment : MonoBehaviour {
 
 	public bool experimentGoingWrong;
 	public bool allRequirementsPresent;
+	public bool allDangersPresent;
 
 	public bool experimentStarted;
 	#endregion
 
 	public List<Student> students = new List<Student>(); //local list of students to address.
+
+	public int currentDanger;
 
 	private void Start() {
 		if (experimentController == null) {
@@ -38,6 +44,7 @@ public class Experiment : MonoBehaviour {
 		}
 
 		experimentFailureTimer = experimentController.checkTimer;
+		currentDanger = 0;
 	}
 
 	public void Update() {
@@ -50,10 +57,22 @@ public class Experiment : MonoBehaviour {
 		}
 	}
 
-	//TOOD make this.
+	//TODO make this.
 	public void CheckForFailure() {
 		//based on requirements, danger, type etc, it should be more or less difficult to complete the experiment.
-		
+		if(Random.Range(0f, 100f) < experimentFailureProbability){
+			switch (dangers[0]) {
+				case ExperimentController.ExperimentDangers.Fire:
+					//light on fire
+					break;
+				case ExperimentController.ExperimentDangers.Acid:
+					//go burn yourself
+					break;
+				case ExperimentController.ExperimentDangers.Physical:
+					//bleed to death bitch
+					break;
+			}
+		}
 	}
 
 	//toggles the requirement if it's true or false.
@@ -72,13 +91,6 @@ public class Experiment : MonoBehaviour {
 			foreach(Student student in students){
     			student.ActivateRequirement(requirement, true);
 			}
-		}
-
-		if (requirementsPresent.All(x => x)) { //if all true
-			allRequirementsPresent = true;
-		} else {
-			//every requirement is not present!!
-			allRequirementsPresent = false;
 		}
 	}
 
@@ -104,6 +116,24 @@ public class Experiment : MonoBehaviour {
 	public void ExperimentStart() { //need to check this because this probably doesn't work, array doesn't resize correctly.
 		if (allRequirementsPresent) {
 			experimentStarted = true;
+		}
+
+		for(int r = 0; r < requirementsNecessary.Count; r++) {
+			if(requirementsPresent[r] == requirementsNecessary[r] || !requirementsPresent[r] == !requirementsNecessary[r]) {
+				//if its the same
+				allRequirementsPresent = true;
+			} else {
+				experimentFailureProbability++;
+			}
+		}
+
+		for (int d = 0; d < dangers.Count; d++) {
+			if (dangersPresent[d] == dangersNecessary[d] || !dangersPresent[d] == !dangersNecessary[d]) {
+				//if its the same
+				allDangersPresent = true;
+			} else {
+				experimentFailureProbability++;
+			}
 		}
 	}
 }
