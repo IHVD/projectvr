@@ -12,9 +12,10 @@ public class Experiment : MonoBehaviour {
 	public List<ExperimentController.ExperimentDangers> dangers = new List<ExperimentController.ExperimentDangers>();
 	public List<ExperimentController.ExperimentRequirements> requirements = new List<ExperimentController.ExperimentRequirements>(); //necessary requirements for this experiment
 
-	public List<bool> requirementsPresent = new List<bool>(3); //TODO this probably breaks the ExperimentStart loop
-	public List<bool> dangersPresent = new List<bool>(); //SET IN THE INSPECTOR
-	[Header("These are the ones actually needed")]
+	public List<bool> requirementsPresent = new List<bool>(3); //these are active or inactive based on the button presses
+	public List<bool> dangersPresent = new List<bool>();
+
+	[Header("These are the ones actually needed to be set")]
 	public List<bool> requirementsNecessary = new List<bool>(); //the ones actually needed.
 	public List<bool> dangersNecessary = new List<bool>(); //SET IN THE INSPECTOR
 
@@ -36,7 +37,7 @@ public class Experiment : MonoBehaviour {
 
 	public List<Student> students = new List<Student>(); //local list of students to address.
 
-	public int currentDanger;
+	public ExperimentController.ExperimentDangers theActualDanger;
 
 	private void Start() {
 		if (experimentController == null) {
@@ -44,7 +45,6 @@ public class Experiment : MonoBehaviour {
 		}
 
 		experimentFailureTimer = experimentController.checkTimer;
-		currentDanger = 0;
 	}
 
 	public void Update() {
@@ -61,15 +61,17 @@ public class Experiment : MonoBehaviour {
 	public void CheckForFailure() {
 		//based on requirements, danger, type etc, it should be more or less difficult to complete the experiment.
 		if(Random.Range(0f, 100f) < experimentFailureProbability){
-			switch (dangers[0]) {
+			int randomStudent = Random.Range(0, students.Count);
+			students[randomStudent].studentMovable = true; //sets a random student movable.
+			switch (dangers[(int)theActualDanger]) {
 				case ExperimentController.ExperimentDangers.Fire:
-					//light on fire
+					//light randomstudent on fire
 					break;
 				case ExperimentController.ExperimentDangers.Acid:
-					//go burn yourself
+					//go burn yourself randomstudent
 					break;
 				case ExperimentController.ExperimentDangers.Physical:
-					//bleed to death bitch
+					//bleed to death bitch randomstudent
 					break;
 			}
 		}

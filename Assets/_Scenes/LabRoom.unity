@@ -574,6 +574,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b55e7b7b19870ad4192bed48711de377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pointType: 0
+  danger: 2
 --- !u!65 &304361662
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -998,6 +1000,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b55e7b7b19870ad4192bed48711de377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pointType: 0
+  danger: 0
 --- !u!65 &562696671
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2761,6 +2765,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b55e7b7b19870ad4192bed48711de377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pointType: 0
+  danger: 1
 --- !u!65 &1073900818
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3488,16 +3494,20 @@ MonoBehaviour:
   requirements: 000000000100000002000000
   requirementsPresent: 010101
   dangersPresent: 010101
+  requirementsNecessary: 010101
+  dangersNecessary: 00
   type: 1
   difficulty: 0
   experimentTime: 0
   experimentFailureProbability: 0
   experimentGoingWrong: 0
   allRequirementsPresent: 0
+  allDangersPresent: 0
   experimentStarted: 0
   students:
   - {fileID: 573856569}
   - {fileID: 654600881}
+  theActualDanger: 0
 --- !u!4 &1527391021
 Transform:
   m_ObjectHideFlags: 0

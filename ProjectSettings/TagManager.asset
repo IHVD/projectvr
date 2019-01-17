@@ -7,9 +7,6 @@ TagManager:
   - ground
   - Fumehood
   - UIButton
-  - UIButtonGlasses
-  - UIButtonCoat
-  - UIButtonGloves
   - Teleport
   - SnapOnPoint
   layers:

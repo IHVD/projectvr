@@ -38,6 +38,7 @@ public class InputManager : MonoBehaviour {
 	public GameObject objectToMove;
 	public Rigidbody objectToMoveRb;
 	Vector3 prevPos;
+	Quaternion prevRotation;
 
 	[Header("Raycast")]
 	LayerMask layerMask = 1 << 9;
@@ -50,10 +51,6 @@ public class InputManager : MonoBehaviour {
 	[SerializeField]
 	//Animator animator;
 	public int cameraHeight;
-
-	bool GlovesOn = false;
-	bool CoatOn = false;
-	bool GlassesOn = false;
 
 	[Header("Input")]
 	public List<InputKey> inputKeys;
@@ -102,9 +99,12 @@ public class InputManager : MonoBehaviour {
 				if (Physics.Raycast(pointer.transform.position, fwd, out hitInfo, Mathf.Infinity, LayerMask.GetMask("Interactable"))) { //TODO change range
 
 					if (hitInfo.transform.tag == "Player"){
-						PlayerUI = hitInfo.transform.GetComponent<PlayerStatusUI>();
-						PlayerUI.removePlayerStatus();
-						return;
+						Student student = hitInfo.transform.GetComponent<Student>();
+						if (!student.myExperiment.experimentStarted) {
+							PlayerUI = hitInfo.transform.GetComponent<PlayerStatusUI>();
+							PlayerUI.removePlayerStatus();
+							return;
+						}
 					}
 					
 					if (hitInfo.transform.tag == "Fumehood") { //clicking the fumehood :P
@@ -138,7 +138,9 @@ public class InputManager : MonoBehaviour {
 					text_debug.text = "Currently Hitting: " + hitInfo.transform.name;
 					objectToMove = hitInfo.transform.gameObject;
 					objectToMoveRb = objectToMove.GetComponent<Rigidbody>();
-
+					if(prevRotation != prevRotation) {
+						prevRotation = OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote);
+					}
 					if (objectToMoveRb != null) {
 						objectToMoveRb.isKinematic = true;
 					}
@@ -146,16 +148,32 @@ public class InputManager : MonoBehaviour {
 			} else { 
 				Quaternion controllerRotation = OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote);
 				//MOVE THE OBJECT
-				objectToMove.transform.parent = pointerStick.transform.parent;
+				
+				if(objectToMove.tag != "Player") {
+
+					objectToMove.transform.parent = pointerStick.transform.parent; //works because it gets parented, so it follows rotation etc from the controller.
+				} else {
+					Student student = objectToMove.GetComponent<Student>();
+					if (student.studentMovable && student.myExperiment.experimentStarted) { //only movable when the experiment has started and is movable.
+						Quaternion direction = OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote) * Quaternion.Inverse(prevRotation);
+						objectToMove.transform.position += new Vector3(direction.x, objectToMove.transform.position.y, direction.z);
+					}
+				}
+				
 			}
 		} else if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger)) {
 			if (objectToMove != null) {
 				objectToMove.transform.parent = null;
+
+				if (objectToMoveRb != null)
 				objectToMoveRb.isKinematic = false;
 
 				Vector3 currPos = objectToMove.transform.position;
-				objectToMoveRb.velocity = (currPos - prevPos) / Time.deltaTime * velocityMultiplier;
 
+				if (objectToMove.tag != "Player") {
+					objectToMoveRb.velocity = (currPos - prevPos) / Time.deltaTime * velocityMultiplier / 2;
+				}
+				
 				objectToMove = null;
 				pointerStick.SetActive(true);
 			}

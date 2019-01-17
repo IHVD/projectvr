@@ -118,7 +118,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 0.1
+  bundleVersion: 0.2
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -244,7 +244,7 @@ PlayerSettings:
   AndroidTargetArchitectures: 5
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: D:/projectvr/key.keystore
+  AndroidKeystoreName: D:/ProjectVR/key.keystore
   AndroidKeyaliasName: projectvr_tobuild
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 1
