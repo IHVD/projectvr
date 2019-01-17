@@ -7,25 +7,25 @@ public class PlayerStatusUI : MonoBehaviour {
 
 	public GameObject theCanvas;
 
-	public string displayText;
-	public string displayButtonGloves;
-	public string displayButtonGlasses;
-	public string displayButtonCoat;
-	public string displayDoing;
-	public Text theName;
-	public Image theButtonGloves;
-	public Image theButtonGlasses;
-	public Image theButtonCoat;
-	public Image theBackground;
-	public Text theGlovesText;
-	public Text theGlassesText;
-	public Text theCoatText;
-	public Text doing;
+	//public string displayText;
+	//public string displayButtonGloves;
+	//public string displayButtonGlasses;
+	//public string displayButtonCoat;
+	//public string displayDoing;
+	//public Text theName;
+	//public Image theButtonGloves;
+	//public Image theButtonGlasses;
+	//public Image theButtonCoat;
+	//public Image theBackground;
+	//public Text theGlovesText;
+	//public Text theGlassesText;
+	//public Text theCoatText;
+	//public Text doing;
 	public bool displayInfo = false;
 	public Camera my_camera;
 
 	// Use this for initialization
-	void Start () {
+	void Start () {/*
 		if(theBackground == null)
 			theBackground = transform.GetChild(0).GetComponent<Image>();
 		if(theName == null)
@@ -45,7 +45,8 @@ public class PlayerStatusUI : MonoBehaviour {
 		if(theCoatText == null) 
 			theCoatText = transform.GetChild(5).GetChild(0).GetComponent<Text>();
 		
-		removePlayerStatus ();
+			*/
+		removePlayerStatus();
 	}
 
 	public void CheckTriggerPress()
@@ -54,11 +55,12 @@ public class PlayerStatusUI : MonoBehaviour {
 	}
 
 	public void removePlayerStatus(){
-		if(displayInfo == true){
-			theCanvas.SetActive(true);
-		}
-		else{
+		if (displayInfo) {
+			displayInfo = false;
 			theCanvas.SetActive(false);
+		} else {
+			displayInfo = true;
+			theCanvas.SetActive(true);
 		}
 	}
 }

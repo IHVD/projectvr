@@ -8,10 +8,13 @@ public class Experiment : MonoBehaviour {
 	public ExperimentController experimentController; //TODO not sure if needed.
 
 	#region Experiment Controller Variables
+	[Header("DO NOT CHANGE ORDER OF VALUES IN DANGER/REQUIRE!")]
 	public List<ExperimentController.ExperimentDangers> dangers = new List<ExperimentController.ExperimentDangers>();
-	[Header("DO NOT MESS UP THE ORDER. USE THE ORDER AS DESCRIBED IN EXPERIMENTCONTROLLER!")]
-	public List<ExperimentController.ExperimentRequirements> requirements = new List<ExperimentController.ExperimentRequirements>(); //required for this experiment
-	public List<bool> requirementsPresent = new List<bool>();
+	public List<ExperimentController.ExperimentRequirements> requirements = new List<ExperimentController.ExperimentRequirements>(); //necessary requirements for this experiment
+
+	public List<bool> requirementsPresent = new List<bool>(3); //TODO this probably breaks the ExperimentStart loop
+	public List<bool> dangersPresent = new List<bool>(); //SET IN THE INSPECTOR
+
 	public ExperimentController.ExperimentType type;
 	public ExperimentController.ExperimentDifficulty difficulty;
 	#endregion
@@ -23,12 +26,11 @@ public class Experiment : MonoBehaviour {
 
 	public bool experimentGoingWrong;
 	public bool allRequirementsPresent;
+
+	public bool experimentStarted;
 	#endregion
 
-	public List<StudentScript> students = new List<StudentScript>();
-
-	//In ToggleRequirement
-
+	public List<Student> students = new List<Student>(); //local list of students to address.
 
 	private void Start() {
 		if (experimentController == null) {
@@ -36,37 +38,43 @@ public class Experiment : MonoBehaviour {
 		}
 
 		experimentFailureTimer = experimentController.checkTimer;
-		//requirementsPresent.Capacity = requirements.Count; //should set the list to x requirements.
 	}
 
 	public void Update() {
 		//checks every second for failure.
-		if(experimentFailureTimer < Time.time) {
-			CheckForFailure();
-			experimentFailureTimer = (int)Time.time + 1f;
+		if (experimentStarted) {
+			if (experimentFailureTimer < Time.time) {
+				CheckForFailure();
+				experimentFailureTimer = (int)Time.time + 1f;
+			}
 		}
 	}
 
+	//TOOD make this.
 	public void CheckForFailure() {
 		//based on requirements, danger, type etc, it should be more or less difficult to complete the experiment.
 		
 	}
 
 	//toggles the requirement if it's true or false.
-	public void ToggleRequirement(int requirement) { 
+	public void ToggleRequirement(int requirement) {
+		if (experimentStarted) {
+			return;
+		}
+
 		if (requirementsPresent[requirement]) {
 			requirementsPresent[requirement] = false;
-			foreach(StudentScript student in students){
+			foreach(Student student in students){
     			student.ActivateRequirement(requirement, false);
 			}
 		} else {
 			requirementsPresent[requirement] = true;
-			foreach(StudentScript student in students){
+			foreach(Student student in students){
     			student.ActivateRequirement(requirement, true);
 			}
 		}
 
-		if (requirementsPresent.All (x => x)) { //if all true
+		if (requirementsPresent.All(x => x)) { //if all true
 			allRequirementsPresent = true;
 		} else {
 			//every requirement is not present!!
@@ -74,9 +82,28 @@ public class Experiment : MonoBehaviour {
 		}
 	}
 
-	public void ExperimentStart() {
+	//Toggles if the person should be aware of dangers.
+	public void ToggleDanger(int danger) {
+		if (experimentStarted) {
+			return;
+		}
+
+		if (dangersPresent[danger]) {
+			dangersPresent[danger] = false;
+			foreach (Student student in students) {
+				student.ActivateDanger(danger, false);
+			}
+		} else {
+			dangersPresent[danger] = true;
+			foreach (Student student in students) {
+				student.ActivateDanger(danger, true);
+			}
+		}
+	}
+
+	public void ExperimentStart() { //need to check this because this probably doesn't work, array doesn't resize correctly.
 		if (allRequirementsPresent) {
-			
+			experimentStarted = true;
 		}
 	}
 }
