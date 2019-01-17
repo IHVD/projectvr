@@ -30,7 +30,7 @@ public class Student : MonoBehaviour {
 		buttons_danger.transform.GetChild(danger).GetComponent<Image>().sprite = (activate ? dangerTextures[danger] : dangerTextures[danger + 3]); //activate? true : false (false + 3 because they will be after the coloured textures);
 		
 	}
-
+	/*
 	private void OnTriggerEnter(Collider other) {
 		if(other.tag == "SnapOnPoint") {
 			foreach (ExperimentController.ExperimentDangers danger in GameObject.Find("experiment").GetComponent<Experiment>().dangers)
@@ -42,6 +42,5 @@ public class Student : MonoBehaviour {
 			//snap to point of said danger.
 			//get rid of danger (disable the acid fire/burn/bleed)
 			//be able to pick em back up again (or click on them to move back to originalPosition)
-		}
-	}
+	}*/
 }
