@@ -45,7 +45,6 @@ public class PlayerStatusUI : MonoBehaviour {
 		if(theCoatText == null) 
 			theCoatText = transform.GetChild(5).GetChild(0).GetComponent<Text>();
 		
-			
 		removePlayerStatus ();
 	}
 
