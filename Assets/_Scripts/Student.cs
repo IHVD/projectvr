@@ -14,7 +14,7 @@ public class Student : MonoBehaviour {
 
 	public Sprite[] dangerTextures;
 
-	public List<bool> currentDanger;
+	
 
 	public Experiment myExperiment;
 
@@ -33,7 +33,12 @@ public class Student : MonoBehaviour {
 
 	private void OnTriggerEnter(Collider other) {
 		if(other.tag == "SnapOnPoint") {
-			//if other.GetComponent<SnapOnPoint>().pointType == currentDanger
+			foreach (ExperimentController.ExperimentDangers danger in GameObject.Find("experiment").GetComponent<Experiment>().dangers)
+				if (danger == other.GetComponent<SnapOnPoint>().danger &&
+				other.GetComponent<SnapOnPoint>().danger == GameObject.Find("experiment").GetComponent<Experiment>().dangers[GameObject.Find("experiment").GetComponent<Experiment>().currentDanger]){
+					Debug.Log(danger);
+				}
+			}
 			//snap to point of said danger.
 			//get rid of danger (disable the acid fire/burn/bleed)
 			//be able to pick em back up again (or click on them to move back to originalPosition)

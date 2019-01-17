@@ -11,6 +11,7 @@ TagManager:
   - UIButtonCoat
   - UIButtonGloves
   - Teleport
+  - SnapOnPoint
   layers:
   - Default
   - TransparentFX
