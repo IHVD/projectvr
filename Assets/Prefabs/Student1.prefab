@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 4335981597677264}
   - component: {fileID: 114130458352983300}
   - component: {fileID: 114634271273172838}
-  - component: {fileID: 64409586607460354}
+  - component: {fileID: 65140521314015542}
   m_Layer: 9
   m_Name: Student1
   m_TagString: Player
@@ -1090,20 +1090,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1171275521584582}
   m_Mesh: {fileID: 4300006, guid: 9d5e9a138589e914f9dc1e28b0904708, type: 3}
---- !u!64 &64409586607460354
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1456837911462740}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300000, guid: 3b6f3848ffadb1042bec27624a3d72cb, type: 3}
 --- !u!65 &65051298688647234
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -1116,6 +1102,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 126.9, y: 113, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65140521314015542
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1456837911462740}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.2812117, y: 1.5273218, z: 1.8649378}
+  m_Center: {x: -0.002750962, y: 1.2509742, z: -0.019843217}
 --- !u!65 &65238317924325306
 BoxCollider:
   m_ObjectHideFlags: 1

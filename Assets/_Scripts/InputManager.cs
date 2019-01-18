@@ -105,6 +105,19 @@ public class InputManager : MonoBehaviour {
 						if(!student.myExperiment.experimentStarted) {
 							PlayerUI = hitInfo.transform.GetComponent<PlayerStatusUI>();
 							PlayerUI.removePlayerStatus();
+						} else { //so if it did start;
+							if (student.myExperiment.experimentGoingWrong) { //and the experiment is going wrong;
+								//be able to pick up the student.
+
+								objectToMove = student.transform.gameObject;
+								objectToMoveRb =  objectToMove.AddComponent<Rigidbody>();
+								objectToMoveRb.useGravity = false;
+								//objectToMoveRb = objectToMove.GetComponent<Rigidbody>();
+								objectToMove.transform.parent = pointer.transform;
+								if (objectToMoveRb != null) {
+									objectToMoveRb.isKinematic = true;
+								}
+							}
 						}
 						return;
 					}
@@ -179,7 +192,12 @@ public class InputManager : MonoBehaviour {
 
 				Vector3 currPos = objectToMove.transform.position;
 				objectToMoveRb.velocity = (currPos - prevPos) / Time.deltaTime * velocityMultiplier;
-				
+
+				if (objectToMove.tag == "Player") {
+					objectToMoveRb = null;
+					Destroy(objectToMove.GetComponent<Rigidbody>()); //should theoretically remove the rigidbody component.
+				}
+
 				objectToMove = null;
 				//pointerStick.SetActive(true);
 			}

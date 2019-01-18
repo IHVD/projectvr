@@ -5661,7 +5661,7 @@ MonoBehaviour:
   experimentGoingWrong: 0
   allRequirementsPresent: 0
   allDangersPresent: 0
-  experimentStarted: 0
+  experimentStarted: 1
   students:
   - {fileID: 573856569}
   - {fileID: 654600881}
@@ -5825,6 +5825,11 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1527391020}
+    - target: {fileID: 114266948071942906, guid: 15baaeadf4105e74b9ddb91715ad9d99,
+        type: 2}
+      propertyPath: theCamera
+      value: 
+      objectReference: {fileID: 950035861}
     - target: {fileID: 114245829695843802, guid: 15baaeadf4105e74b9ddb91715ad9d99,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -5975,11 +5980,6 @@ Prefab:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114266948071942906, guid: 15baaeadf4105e74b9ddb91715ad9d99,
-        type: 2}
-      propertyPath: theCamera
-      value: 
-      objectReference: {fileID: 950035861}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15baaeadf4105e74b9ddb91715ad9d99, type: 2}
   m_IsPrefabAsset: 0

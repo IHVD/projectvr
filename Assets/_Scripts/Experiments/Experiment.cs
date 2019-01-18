@@ -60,9 +60,9 @@ public class Experiment : MonoBehaviour {
 	//TODO make this.
 	public void CheckForFailure() {
 		//based on requirements, danger, type etc, it should be more or less difficult to complete the experiment.
-		if(Random.Range(0f, 100f) < experimentFailureProbability){
+		if(Random.Range(0f, 1f) < experimentFailureProbability * 100){ //TODO reset this
 			int randomStudent = Random.Range(0, students.Count);
-			students[randomStudent].studentMovable = true; //sets a random student movable.
+			students[0].studentMovable = true; //sets a random student movable.
 			switch (dangers[(int)theActualDanger]) {
 				case ExperimentController.ExperimentDangers.Fire:
 					//light randomstudent on fire
