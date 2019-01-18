@@ -147,17 +147,22 @@ public class InputManager : MonoBehaviour {
 
 					Debug.Log(hitInfo.transform.tag);
 
+					if(hitInfo.transform.tag == "Movable") {
+
+						objectToMove = hitInfo.transform.gameObject;
+						objectToMoveRb = objectToMove.GetComponent<Rigidbody>();
+						objectToMove.transform.parent = pointer.transform;
+						if (objectToMoveRb != null) {
+							objectToMoveRb.isKinematic = true;
+						}
+						return;
+					}
+
 					text_debug.text = "Currently Hitting: " + hitInfo.transform.name;
-					objectToMove = hitInfo.transform.gameObject;
-					objectToMoveRb = objectToMove.GetComponent<Rigidbody>();
 
 					//if (prevRotation != prevRotation) {
 						prevRotation = OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote);
 					//}
-
-					if (objectToMoveRb != null) {
-						objectToMoveRb.isKinematic = true;
-					}
 
 					Debug.Log(objectToMove);
 				} //end of raycast

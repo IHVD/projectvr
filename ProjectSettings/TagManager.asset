@@ -9,6 +9,7 @@ TagManager:
   - UIButton
   - Teleport
   - SnapOnPoint
+  - Movable
   layers:
   - Default
   - TransparentFX
