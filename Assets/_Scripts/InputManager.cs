@@ -145,15 +145,13 @@ public class InputManager : MonoBehaviour {
 					//}
 
 					if (objectToMoveRb != null) {
-						Debug.Log("got this part");
-						Debug.Log(objectToMove);
 						objectToMoveRb.isKinematic = true;
 					}
-				}
+				} //end of raycast
 			} else { 
 				Quaternion controllerRotation = OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote);
 				//MOVE THE OBJECT
-				Debug.Log("are u there? " + objectToMove == null);
+				Debug.Log("are u there?");
 				if(objectToMove.tag != "Player") {
 					objectToMove.transform.parent = pointerStick.transform.parent; //works because it gets parented, so it follows rotation etc from the controller.
 				} else {
