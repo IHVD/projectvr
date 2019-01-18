@@ -102,10 +102,10 @@ public class InputManager : MonoBehaviour {
 
 					if (hitInfo.transform.tag == "Player"){
 						Student student = hitInfo.transform.GetComponent<Student>();
-						//if (!student.myExperiment.experimentStarted) {
+						if(!student.myExperiment.experimentStarted) {
 							PlayerUI = hitInfo.transform.GetComponent<PlayerStatusUI>();
 							PlayerUI.removePlayerStatus();
-						//}
+						}
 						return;
 					}
 					
