@@ -14,7 +14,7 @@ public class Student : MonoBehaviour {
 
 	public Sprite[] dangerTextures;
 
-	public bool studentMovable = true;
+	public bool studentMovable;
 
 	public Experiment myExperiment;
 
