@@ -15,6 +15,7 @@ public class Student : MonoBehaviour {
 	public Sprite[] dangerTextures;
 
 	public bool studentMovable;
+	public bool inSnapPoint;
 
 	public Experiment myExperiment;
 
@@ -41,8 +42,12 @@ public class Student : MonoBehaviour {
 			if(snap.danger == myExperiment.theActualDanger) {
 				transform.position = other.transform.position;
 				studentMovable = false;
+				GameController.gCont.inputManager.objectToMove.transform.parent = null;
+				GameController.gCont.inputManager.objectToMove = null;
+				inSnapPoint = true;
 			} else {
 				transform.position = originalPosition;
+				inSnapPoint = false;
 				studentMovable = true;
 			}
 		}

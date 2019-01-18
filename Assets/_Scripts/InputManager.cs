@@ -106,7 +106,7 @@ public class InputManager : MonoBehaviour {
 							PlayerUI = hitInfo.transform.GetComponent<PlayerStatusUI>();
 							PlayerUI.removePlayerStatus();
 						} else { //so if it did start;
-							if (student.myExperiment.experimentGoingWrong) { //and the experiment is going wrong;
+							if (student.myExperiment.experimentGoingWrong && student.studentMovable) { //and the experiment is going wrong;
 								//be able to pick up the student.
 
 								objectToMove = student.transform.gameObject;
@@ -194,8 +194,14 @@ public class InputManager : MonoBehaviour {
 				objectToMoveRb.velocity = (currPos - prevPos) / Time.deltaTime * velocityMultiplier;
 
 				if (objectToMove.tag == "Player") {
+					Student student = objectToMove.GetComponent<Student>();
 					objectToMoveRb = null;
 					Destroy(objectToMove.GetComponent<Rigidbody>()); //should theoretically remove the rigidbody component.
+
+					student.transform.position = student.originalPosition;
+					student.inSnapPoint = false;
+					student.studentMovable = true;
+					
 				}
 
 				objectToMove = null;

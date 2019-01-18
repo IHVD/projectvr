@@ -4902,6 +4902,11 @@ Prefab:
       propertyPath: my_camera
       value: 
       objectReference: {fileID: 950035861}
+    - target: {fileID: 65140521314015542, guid: 15baaeadf4105e74b9ddb91715ad9d99,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15baaeadf4105e74b9ddb91715ad9d99, type: 2}
   m_IsPrefabAsset: 0
@@ -5658,14 +5663,14 @@ MonoBehaviour:
   difficulty: 0
   experimentTime: 0
   experimentFailureProbability: 0
-  experimentGoingWrong: 0
+  experimentGoingWrong: 1
   allRequirementsPresent: 0
   allDangersPresent: 0
   experimentStarted: 1
   students:
   - {fileID: 573856569}
   - {fileID: 654600881}
-  theActualDanger: 0
+  theActualDanger: 2
 --- !u!4 &1527391021
 Transform:
   m_ObjectHideFlags: 0
@@ -5979,6 +5984,16 @@ Prefab:
         type: 2}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114130458352983300, guid: 15baaeadf4105e74b9ddb91715ad9d99,
+        type: 2}
+      propertyPath: studentMovable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 65140521314015542, guid: 15baaeadf4105e74b9ddb91715ad9d99,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15baaeadf4105e74b9ddb91715ad9d99, type: 2}
