@@ -93,19 +93,19 @@ public class InputManager : MonoBehaviour {
 		UpdatePointer();
 
 		if (ButtonWePressed(Inputs.interact)) {
-		//TODO layermask
+	
 			if (objectToMove == null) { //Already have an object so dont have to fire again.
 				RaycastHit hitInfo;
 
 				if (Physics.Raycast(pointer.transform.position, fwd, out hitInfo, Mathf.Infinity, LayerMask.GetMask("Interactable"))) { //TODO change range
-					
+					Debug.Log("button down on " + hitInfo.transform.tag);
 
 					if (hitInfo.transform.tag == "Player"){
 						Student student = hitInfo.transform.GetComponent<Student>();
-						if (!student.myExperiment.experimentStarted) {
+						//if (!student.myExperiment.experimentStarted) {
 							PlayerUI = hitInfo.transform.GetComponent<PlayerStatusUI>();
 							PlayerUI.removePlayerStatus();
-						}
+						//}
 						return;
 					}
 					
@@ -124,17 +124,28 @@ public class InputManager : MonoBehaviour {
 						return;
 					}
 
-					if(hitInfo.transform.tag == "UIButton") { //ui buttons
+					if (hitInfo.transform.tag == "UIButton") { //ui buttons
 						Button tempButton = hitInfo.transform.GetComponent<Button>();
 						IPointerClickHandler clickHandler = tempButton.GetComponent<IPointerClickHandler>();
 						PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
 						clickHandler.OnPointerClick(pointerEventData);
+						//play sound effect (button click);
 						return;
 					}
 
-					if(hitInfo.transform.tag == "ground") {
+					//dont forget bool
+					//if tag is boek
+					//if boek is active
+					//set active boek false
+					//else
+					//set active boek true
+
+
+					if (hitInfo.transform.tag == "ground") {
 						return;
 					}
+
+					Debug.Log(hitInfo.transform.tag);
 
 					text_debug.text = "Currently Hitting: " + hitInfo.transform.name;
 					objectToMove = hitInfo.transform.gameObject;
@@ -147,45 +158,33 @@ public class InputManager : MonoBehaviour {
 					if (objectToMoveRb != null) {
 						objectToMoveRb.isKinematic = true;
 					}
+
+					Debug.Log(objectToMove);
 				} //end of raycast
 			} else { 
 				Quaternion controllerRotation = OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote);
 				//MOVE THE OBJECT
-				Debug.Log("are u there?");
-				if(objectToMove.tag != "Player") {
-					objectToMove.transform.parent = pointerStick.transform.parent; //works because it gets parented, so it follows rotation etc from the controller.
-				} else {
-					Student student = objectToMove.GetComponent<Student>();
-					if (student.studentMovable) { //only movable when the experiment has started and is movable. //TODO ADD EXPERIMENT STARTED!!
-						Quaternion direction = OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote) * Quaternion.Inverse(prevRotation);
-						objectToMove.transform.position += new Vector3(direction.x, objectToMove.transform.position.y, direction.z);
-					}
-				}
-				
+				objectToMove.transform.parent = pointer.transform; //works because it gets parented, so it follows rotation etc from the controller.
+				Debug.Log("set the parent of this object");
 			}
-		} else if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger)) {
+		} else if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger)) { //let go object
 			if (objectToMove != null) {
 				objectToMove.transform.parent = null;
-
-				if (objectToMoveRb != null)
 				objectToMoveRb.isKinematic = false;
 
 				Vector3 currPos = objectToMove.transform.position;
-
-				
-				objectToMoveRb.velocity = (currPos - prevPos) / Time.deltaTime * velocityMultiplier / 2;
-				
+				objectToMoveRb.velocity = (currPos - prevPos) / Time.deltaTime * velocityMultiplier;
 				
 				objectToMove = null;
-				pointerStick.SetActive(true);
+				//pointerStick.SetActive(true);
 			}
 		}
 
 		if(OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger)){
-			if (objectToMove != null) {
-				Vector3 currPos = objectToMove.transform.position;
-				prevPos = currPos;
-			}
+			
+			Vector3 currPos = objectToMove.transform.position;
+			prevPos = currPos;
+			
 		}
 
 		//To see the rotational debug stuff.
@@ -195,7 +194,6 @@ public class InputManager : MonoBehaviour {
 
 	public void MoveCamera() {
 		transform.position = cameraTargetPos;
-		//animator.SetTrigger("FadeOut");
 	}
 
 	//might be stupid and not work at all and super resource intensive but we're gonna do it anyway.
