@@ -153,7 +153,12 @@ public class InputManager : MonoBehaviour {
 
 
 					if (hitInfo.transform.tag == "Book" && amountBookTouched == 0 && theBookScript.restartTutorial == false) {
-						
+						objectToMove = hitInfo.transform.gameObject;
+						objectToMoveRb = objectToMove.GetComponent<Rigidbody>();
+						objectToMove.transform.parent = pointer.transform;
+						if (objectToMoveRb != null) {
+							objectToMoveRb.isKinematic = true;
+						}
 						touchingBook = true;
 						bookPage += 1;
 						amountBookTouched = 1;
@@ -226,10 +231,10 @@ public class InputManager : MonoBehaviour {
 		}
 
 		if(OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger)){
-			
-			Vector3 currPos = objectToMove.transform.position;
-			prevPos = currPos;
-			
+			if (objectToMove != null) {
+				Vector3 currPos = objectToMove.transform.position;
+				prevPos = currPos;
+			}
 		}
 
 		//To see the rotational debug stuff.

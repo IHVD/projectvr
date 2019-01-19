@@ -51,5 +51,10 @@ public class Student : MonoBehaviour {
 				studentMovable = true;
 			}
 		}
+		if(other.tag == "boundaryPlane") {
+			transform.position = originalPosition;
+			inSnapPoint = false;
+			studentMovable = true;
+		}
 	}
 }

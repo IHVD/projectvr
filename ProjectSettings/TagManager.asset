@@ -12,6 +12,7 @@ TagManager:
   - Movable
   - Book
   - Tutorial
+  - boundaryPlane
   layers:
   - Default
   - TransparentFX

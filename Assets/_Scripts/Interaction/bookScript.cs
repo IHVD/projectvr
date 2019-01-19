@@ -11,12 +11,19 @@ public class bookScript : MonoBehaviour {
 	public GameObject text5;
 
 	public bool restartTutorial;
+	public bookScript theBookScript;
+	public GameObject theActualBook;
+	public Vector3 bookOriginalPosition;
+	public Quaternion bookOriginalRotation;	
 
 	private InputManager theInputManager;
 
 	// Use this for initialization
 	void Start () {
 		theInputManager = FindObjectOfType<InputManager>();
+		theBookScript = FindObjectOfType<bookScript>();
+		bookOriginalPosition = theActualBook.transform.position;
+		bookOriginalRotation = theActualBook.transform.rotation;
 	}
 	
 	// Update is called once per frame
@@ -57,4 +64,5 @@ public class bookScript : MonoBehaviour {
 		text4.SetActive(false);
 		text5.SetActive(false);
 	}
+
 }
