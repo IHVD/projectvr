@@ -11,16 +11,20 @@ public class Student : MonoBehaviour {
 	public GameObject buttons_danger;
 
 	public Vector3 originalPosition;
+	public Quaternion originalRotation;
 
 	public Sprite[] dangerTextures;
 
 	public bool studentMovable;
 	public bool inSnapPoint;
 
+	public float timeForSnapResolve;
+
 	public Experiment myExperiment;
 
 	private void Start() {
 		originalPosition = transform.position;
+		originalRotation = transform.rotation;
 	}
 
 	public void ActivateRequirement(int requirement, bool activate){
@@ -45,16 +49,27 @@ public class Student : MonoBehaviour {
 				GameController.gCont.inputManager.objectToMove.transform.parent = null;
 				GameController.gCont.inputManager.objectToMove = null;
 				inSnapPoint = true;
+
+				//start a timer.
+				StartCoroutine(DangerResolver());
 			} else {
-				transform.position = originalPosition;
-				inSnapPoint = false;
-				studentMovable = true;
+				SnapDone();
 			}
 		}
 		if(other.tag == "boundaryPlane") {
-			transform.position = originalPosition;
-			inSnapPoint = false;
-			studentMovable = true;
+			SnapDone();
 		}
+	}
+
+	IEnumerator DangerResolver() {
+		yield return new WaitForSeconds(timeForSnapResolve);
+		SnapDone();
+	}
+
+	void SnapDone() {
+		transform.position = originalPosition;
+		transform.rotation = originalRotation;
+		inSnapPoint = false;
+		studentMovable = true;
 	}
 }

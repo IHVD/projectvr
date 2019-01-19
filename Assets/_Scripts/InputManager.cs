@@ -103,7 +103,6 @@ public class InputManager : MonoBehaviour {
 				RaycastHit hitInfo;
 
 				if (Physics.Raycast(pointer.transform.position, fwd, out hitInfo, Mathf.Infinity, LayerMask.GetMask("Interactable"))) { //TODO change range
-					Debug.Log("button down on " + hitInfo.transform.tag);
 
 					if (hitInfo.transform.tag == "Player"){
 						Student student = hitInfo.transform.GetComponent<Student>();
@@ -119,6 +118,8 @@ public class InputManager : MonoBehaviour {
 								objectToMoveRb.useGravity = false;
 								//objectToMoveRb = objectToMove.GetComponent<Rigidbody>();
 								objectToMove.transform.parent = pointer.transform;
+								//objectToMove.transform.rotation = pointer.transform.rotation; //TODO doesnt rotate well oof.
+								objectToMove.transform.LookAt(pointer.transform);
 								if (objectToMoveRb != null) {
 									objectToMoveRb.isKinematic = true;
 								}
@@ -222,7 +223,7 @@ public class InputManager : MonoBehaviour {
 					student.transform.position = student.originalPosition;
 					student.inSnapPoint = false;
 					student.studentMovable = true;
-					
+					student.transform.rotation = student.originalRotation;
 				}
 
 				objectToMove = null;

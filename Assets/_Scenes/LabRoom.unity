@@ -5422,6 +5422,7 @@ MonoBehaviour:
   theBookScript: {fileID: 0}
   theActualBook: {fileID: 1365609947}
   bookOriginalPosition: {x: 0, y: 0, z: 0}
+  bookOriginalRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!65 &1155299119
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6900,6 +6901,11 @@ Prefab:
         type: 2}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114130458352983300, guid: 15baaeadf4105e74b9ddb91715ad9d99,
+        type: 2}
+      propertyPath: timeForSnapResolve
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15baaeadf4105e74b9ddb91715ad9d99, type: 2}
