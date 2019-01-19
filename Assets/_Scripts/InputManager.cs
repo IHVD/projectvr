@@ -57,7 +57,11 @@ public class InputManager : MonoBehaviour {
 
 	public enum Inputs {interact}; //possible actions / interactions that we can do.
 	
+	public bool touchingBook;
+	public float bookPage = 0;
+	public float amountBookTouched = 0;
 	private sfxManager theSFXManager;
+	private bookScript theBookScript;
 	// ADDING sfxManager TO A SCRIPT: you need to add a "private sfxManager theSFXManager;" E.g. on the line above.
 	// Then adding "theSFXManager = FindObjectOfType<sfxManager>();" in the script's start function.
 	// ADDING SFX:
@@ -66,6 +70,7 @@ public class InputManager : MonoBehaviour {
 	// Or by simply going to the sfxManager GameObject in the hierarchy and reading them from the left side.
 
 	private void Start() {
+		theBookScript = FindObjectOfType<bookScript>();	
 		theSFXManager = FindObjectOfType<sfxManager>();
 		inputMan = this;
 		if (screenFade == null)
@@ -146,14 +151,25 @@ public class InputManager : MonoBehaviour {
 						return;
 					}
 
-					//dont forget bool
-					//if tag is boek
-					//if boek is active
-					//set active boek false
-					//else
-					//set active boek true
 
-
+					if (hitInfo.transform.tag == "Book" && amountBookTouched == 0 && theBookScript.restartTutorial == false) {
+						
+						touchingBook = true;
+						bookPage += 1;
+						amountBookTouched = 1;
+						return;
+					} 
+					else if(theBookScript.restartTutorial == true) {
+						touchingBook = true;
+						bookPage = 0;
+						amountBookTouched = 0;
+					}						
+					else {
+						touchingBook = false;
+						amountBookTouched = 0;
+						return;						
+					}		
+						
 					if (hitInfo.transform.tag == "ground") {
 						return;
 					}

@@ -10,6 +10,8 @@ TagManager:
   - Teleport
   - SnapOnPoint
   - Movable
+  - Book
+  - Tutorial
   layers:
   - Default
   - TransparentFX
