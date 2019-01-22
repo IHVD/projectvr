@@ -9,6 +9,13 @@ public class GameController : MonoBehaviour {
 
 	public InputManager inputManager;
 
+	public float score = 2;
+	public float scoreIncreasePerSecond = 3;
+
+	public void Update()
+	{
+		score += scoreIncreasePerSecond * Time.deltaTime;
+	}
 	public void Start() {
 		gCont = this;
 		gVars.StartCoroutine(gVars.CSVLoad(gVars.urlToDownload));
