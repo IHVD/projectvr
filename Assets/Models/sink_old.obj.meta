@@ -1,64 +1,58 @@
 fileFormatVersion: 2
-guid: 94c731b5b5b4c6844be3e4c07479edbe
+guid: ce6065d0a0933e946b1e5dee456dc874
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: Sink_back__new_
-    100004: Sink_basin
-    100006: Sink_tap_arm
-    100008: Sink_tap_handle
-    100010: Sink_tap_main
-    100012: Sink_tap_pipe_one
-    100014: Sink_tap_pipe_two
-    100016: Sink_tap_top
-    100018: Table_reference
-    400000: //RootNode
-    400002: Sink_back__new_
-    400004: Sink_basin
-    400006: Sink_tap_arm
-    400008: Sink_tap_handle
-    400010: Sink_tap_main
-    400012: Sink_tap_pipe_one
-    400014: Sink_tap_pipe_two
-    400016: Sink_tap_top
-    400018: Table_reference
-    2100000: Sink_back__new_Mat
-    2100002: Sink_basinMat
-    2100004: Sink_tap_armMat
-    2100006: Sink_tap_handleMat
-    2100008: Sink_tap_mainMat
-    2100010: Sink_tap_pipe_oneMat
-    2100012: Sink_tap_pipe_twoMat
-    2100014: Sink_tap_topMat
-    2100016: Table_referenceMat
-    2300000: Sink_back__new_
-    2300002: Sink_basin
-    2300004: Sink_tap_arm
-    2300006: Sink_tap_handle
-    2300008: Sink_tap_main
-    2300010: Sink_tap_pipe_one
-    2300012: Sink_tap_pipe_two
-    2300014: Sink_tap_top
-    2300016: Table_reference
-    3300000: Sink_back__new_
-    3300002: Sink_basin
-    3300004: Sink_tap_arm
-    3300006: Sink_tap_handle
-    3300008: Sink_tap_main
-    3300010: Sink_tap_pipe_one
-    3300012: Sink_tap_pipe_two
-    3300014: Sink_tap_top
-    3300016: Table_reference
-    4300000: Sink_back__new_
-    4300002: Sink_basin
-    4300004: Sink_tap_arm
-    4300006: Sink_tap_handle
-    4300008: Sink_tap_main
-    4300010: Sink_tap_pipe_one
-    4300012: Sink_tap_pipe_two
-    4300014: Sink_tap_top
-    4300016: Table_reference
+    100000: Box001
+    100002: Box002
+    100004: Box003
+    100006: Box005
+    100008: Cylinder001
+    100010: Cylinder002
+    100012: Cylinder003
+    100014: Cylinder004
+    100016: //RootNode
+    400000: Box001
+    400002: Box002
+    400004: Box003
+    400006: Box005
+    400008: Cylinder001
+    400010: Cylinder002
+    400012: Cylinder003
+    400014: Cylinder004
+    400016: //RootNode
+    2100000: Box001Mat
+    2100002: Box002Mat
+    2100004: Box003Mat
+    2100006: Box005Mat
+    2100008: Cylinder001Mat
+    2100010: Cylinder002Mat
+    2100012: Cylinder003Mat
+    2100014: Cylinder004Mat
+    2300000: Box001
+    2300002: Box002
+    2300004: Box003
+    2300006: Box005
+    2300008: Cylinder001
+    2300010: Cylinder002
+    2300012: Cylinder003
+    2300014: Cylinder004
+    3300000: Box001
+    3300002: Box002
+    3300004: Box003
+    3300006: Box005
+    3300008: Cylinder001
+    3300010: Cylinder002
+    3300012: Cylinder003
+    3300014: Cylinder004
+    4300000: Box001
+    4300002: Box002
+    4300004: Box003
+    4300006: Box005
+    4300008: Cylinder001
+    4300010: Cylinder002
+    4300012: Cylinder003
+    4300014: Cylinder004
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -90,7 +84,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 0.02
     meshCompression: 0
     addColliders: 0
     importVisibility: 1

@@ -1,0 +1,179 @@
+fileFormatVersion: 2
+guid: c2b6cd3bf461b334dad266b3eaeb9387
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: button_green_one
+    100002: button_green_two
+    100004: button_grey_one
+    100006: button_grey_two
+    100008: button_yellow_one
+    100010: button_yellow_three
+    100012: button_yellow_two
+    100014: //RootNode
+    100016: fume_bottom
+    100018: fume_hood_cupboard__left_
+    100020: fume_hood_cupboard__right_
+    100022: fume_main
+    100024: fume_top
+    100026: glass_main001
+    100028: glass_top
+    100030: human_size_reference
+    400000: button_green_one
+    400002: button_green_two
+    400004: button_grey_one
+    400006: button_grey_two
+    400008: button_yellow_one
+    400010: button_yellow_three
+    400012: button_yellow_two
+    400014: //RootNode
+    400016: fume_bottom
+    400018: fume_hood_cupboard__left_
+    400020: fume_hood_cupboard__right_
+    400022: fume_main
+    400024: fume_top
+    400026: glass_main001
+    400028: glass_top
+    400030: human_size_reference
+    2100000: button_green_oneMat
+    2100002: button_green_twoMat
+    2100004: button_grey_oneMat
+    2100006: button_grey_twoMat
+    2100008: button_yellow_oneMat
+    2100010: button_yellow_threeMat
+    2100012: button_yellow_twoMat
+    2100014: fume_bottomMat
+    2100016: fume_hood_cupboard__left_Mat
+    2100018: fume_hood_cupboard__right_Mat
+    2100020: fume_mainMat
+    2100022: fume_topMat
+    2100024: glass_main001Mat
+    2100026: glass_topMat
+    2100028: human_size_referenceMat
+    2300000: button_green_one
+    2300002: button_green_two
+    2300004: button_grey_one
+    2300006: button_grey_two
+    2300008: button_yellow_one
+    2300010: button_yellow_three
+    2300012: button_yellow_two
+    2300014: fume_bottom
+    2300016: fume_hood_cupboard__left_
+    2300018: fume_hood_cupboard__right_
+    2300020: fume_main
+    2300022: fume_top
+    2300024: glass_main001
+    2300026: glass_top
+    2300028: human_size_reference
+    3300000: button_green_one
+    3300002: button_green_two
+    3300004: button_grey_one
+    3300006: button_grey_two
+    3300008: button_yellow_one
+    3300010: button_yellow_three
+    3300012: button_yellow_two
+    3300014: fume_bottom
+    3300016: fume_hood_cupboard__left_
+    3300018: fume_hood_cupboard__right_
+    3300020: fume_main
+    3300022: fume_top
+    3300024: glass_main001
+    3300026: glass_top
+    3300028: human_size_reference
+    4300000: button_green_one
+    4300002: button_green_two
+    4300004: button_grey_one
+    4300006: button_grey_two
+    4300008: button_yellow_one
+    4300010: button_yellow_three
+    4300012: button_yellow_two
+    4300014: fume_bottom
+    4300016: fume_hood_cupboard__left_
+    4300018: fume_hood_cupboard__right_
+    4300020: fume_main
+    4300022: fume_top
+    4300024: glass_main001
+    4300026: glass_top
+    4300028: human_size_reference
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.06
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
