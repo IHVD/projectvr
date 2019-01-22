@@ -19,9 +19,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4641717829865318}
-  m_Layer: 0
+  - component: {fileID: 114201391901429962}
+  - component: {fileID: 65276969679541938}
+  m_Layer: 9
   m_Name: shower
-  m_TagString: Untagged
+  m_TagString: SnapOnPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -233,9 +235,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1138357815222342}
-  m_LocalRotation: {x: -0, y: 0.0000004768371, z: -0, w: 1}
-  m_LocalPosition: {x: -391.1, y: 0, z: -364.8}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: 0.0000005960464, z: -0, w: 1}
+  m_LocalPosition: {x: -377.3, y: 0, z: -365.8}
+  m_LocalScale: {x: 26.533571, y: 26.533573, z: 26.533571}
   m_Children:
   - {fileID: 4432487246308702}
   - {fileID: 4452336130162210}
@@ -623,3 +625,28 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1823499768777926}
   m_Mesh: {fileID: 4300006, guid: 2a20724e91420564e822e6d8d9ac53ff, type: 3}
+--- !u!65 &65276969679541938
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1138357815222342}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.01, y: 5.06, z: 3.46}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114201391901429962
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1138357815222342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b55e7b7b19870ad4192bed48711de377, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointType: 0
+  danger: 1

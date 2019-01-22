@@ -215,7 +215,7 @@ public class InputManager : MonoBehaviour {
 				Vector3 currPos = objectToMove.transform.position;
 				objectToMoveRb.velocity = (currPos - prevPos) / Time.deltaTime * velocityMultiplier;
 
-				if (objectToMove.tag == "Player") {
+				if (objectToMove.tag == "Player") { //TODO something here goes wrong @luuk, please check with rift in console/inspector
 					Student student = objectToMove.GetComponent<Student>();
 					objectToMoveRb = null;
 					Destroy(objectToMove.GetComponent<Rigidbody>()); //should theoretically remove the rigidbody component.

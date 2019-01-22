@@ -12,12 +12,15 @@ public class Experiment : MonoBehaviour {
 	public List<ExperimentController.ExperimentDangers> dangers = new List<ExperimentController.ExperimentDangers>();
 	public List<ExperimentController.ExperimentRequirements> requirements = new List<ExperimentController.ExperimentRequirements>(); //necessary requirements for this experiment
 
-	public List<bool> requirementsPresent = new List<bool>(3); //these are active or inactive based on the button presses
+	[Header("toggled by the buttons in-game")]
+	public List<bool> requirementsPresent = new List<bool>(3);
 	public List<bool> dangersPresent = new List<bool>();
+	public List<bool> wasteBinUsed = new List<bool>(); //MAKE SURE ONLY 1 IS ACTIVE.
 
-	[Header("These are the ones actually needed to be set")]
+	[Header("the required variables for this experiment")]
 	public List<bool> requirementsNecessary = new List<bool>(); //the ones actually needed.
 	public List<bool> dangersNecessary = new List<bool>(); //SET IN THE INSPECTOR
+	public List<bool> wastebinNecessary = new List<bool>();
 
 	public ExperimentController.ExperimentType type;
 	public ExperimentController.ExperimentDifficulty difficulty;
@@ -37,7 +40,10 @@ public class Experiment : MonoBehaviour {
 
 	public List<Student> students = new List<Student>(); //local list of students to address.
 
+	[Header("required variables for this experiment")]
 	public ExperimentController.ExperimentDangers theActualDanger;
+	public ExperimentController.ExperimentWasteBin theCorrectWastebin;
+	
 
 	private void Start() {
 		if (experimentController == null) {
@@ -57,27 +63,26 @@ public class Experiment : MonoBehaviour {
 		}
 	}
 
-	//TODO make this.
 	public void CheckForFailure() {
 		//based on requirements, danger, type etc, it should be more or less difficult to complete the experiment.
-		if(Random.Range(0f, 1f) < experimentFailureProbability * 100){ //TODO reset this
+		if(Random.Range(0f, 1f) < experimentFailureProbability * 100){ //TODO reset this to actual values?
 			int randomStudent = Random.Range(0, students.Count);
-			students[0].studentMovable = true; //sets a random student movable.
+			students[randomStudent].studentMovable = true; //sets a random student movable.
 			switch (dangers[(int)theActualDanger]) {
 				case ExperimentController.ExperimentDangers.Fire:
-					//light randomstudent on fire
+					students[randomStudent].ActivateParticles(0, true);
 					break;
 				case ExperimentController.ExperimentDangers.Acid:
-					//go burn yourself randomstudent
+					students[randomStudent].ActivateParticles(1, true);
 					break;
 				case ExperimentController.ExperimentDangers.Physical:
-					//bleed to death bitch randomstudent
+					students[randomStudent].ActivateParticles(2, true);
 					break;
 			}
 		}
 	}
 
-	//toggles the requirement if it's true or false.
+	//[BUTTON] toggles the requirement on the card.
 	public void ToggleRequirement(int requirement) {
 		if (experimentStarted) {
 			return;
@@ -96,7 +101,7 @@ public class Experiment : MonoBehaviour {
 		}
 	}
 
-	//Toggles if the person should be aware of dangers.
+	//[BUTTON] Toggles the danger on the card
 	public void ToggleDanger(int danger) {
 		if (experimentStarted) {
 			return;
@@ -112,6 +117,21 @@ public class Experiment : MonoBehaviour {
 			foreach (Student student in students) {
 				student.ActivateDanger(danger, true);
 			}
+		}
+	}
+
+	//[BUTTON] which bin to use on card
+	public void ToggleWastebin(int bin) {
+		if (experimentStarted) {
+			return;
+		}
+
+		//set each false, and the required to true.
+		foreach (Student student in students) {
+			for(int w = 0; w < wasteBinUsed.Count; w++) {
+				student.ActivateWastebin(bin, false);
+			}
+			student.ActivateWastebin(bin, true);
 		}
 	}
 
@@ -133,6 +153,14 @@ public class Experiment : MonoBehaviour {
 			if (dangersPresent[d] == dangersNecessary[d] || !dangersPresent[d] == !dangersNecessary[d]) {
 				//if its the same
 				allDangersPresent = true;
+			} else {
+				experimentFailureProbability++;
+			}
+		}
+
+		for (int w = 0; w < wastebinNecessary.Count; w++) {
+			if (wastebinNecessary[w] && theCorrectWastebin == (ExperimentController.ExperimentWasteBin)w) {
+				//if neccessary[w] is true and the correctwastebin is that same number, u good.
 			} else {
 				experimentFailureProbability++;
 			}

@@ -9,6 +9,7 @@ public class ExperimentController : MonoBehaviour {
 	[SerializeField]
 	public enum ExperimentRequirements {Gloves, LabCoat, Glasses, HairTucked}
 	public enum ExperimentDifficulty {Easy, Middle, Hard};
+	public enum ExperimentWasteBin { Flammable, Acidic, TheOtherOne};
 
 	public float checkTimer;
 
