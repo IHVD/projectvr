@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class InputKey {
@@ -103,7 +103,6 @@ public class InputManager : MonoBehaviour {
 				RaycastHit hitInfo;
 
 				if (Physics.Raycast(pointer.transform.position, fwd, out hitInfo, Mathf.Infinity, LayerMask.GetMask("Interactable"))) { //TODO change range
-
 					if (hitInfo.transform.tag == "Player"){
 						Student student = hitInfo.transform.GetComponent<Student>();
 						if(!student.myExperiment.experimentStarted) {
@@ -117,9 +116,12 @@ public class InputManager : MonoBehaviour {
 								objectToMoveRb =  objectToMove.AddComponent<Rigidbody>();
 								objectToMoveRb.useGravity = false;
 								//objectToMoveRb = objectToMove.GetComponent<Rigidbody>();
-								objectToMove.transform.parent = pointer.transform;
+								//objectToMove.transform.parent = pointer.transform;
+								objectToMove.transform.position = new Vector3(	objectToMove.transform.position.x + OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote).y * 10f, 
+																				objectToMove.transform.position.y, 
+																				objectToMove.transform.position.z + OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote).x * 10f);
 								//objectToMove.transform.rotation = pointer.transform.rotation; //TODO doesnt rotate well oof.
-								objectToMove.transform.LookAt(pointer.transform);
+								objectToMove.transform.LookAt(pointer.transform.parent);
 								if (objectToMoveRb != null) {
 									objectToMoveRb.isKinematic = true;
 								}
@@ -202,9 +204,15 @@ public class InputManager : MonoBehaviour {
 					Debug.Log(objectToMove);
 				} //end of raycast
 			} else { 
-				Quaternion controllerRotation = OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote);
-				//MOVE THE OBJECT
-				objectToMove.transform.parent = pointer.transform; //works because it gets parented, so it follows rotation etc from the controller.
+				Quaternion controllerRotation = OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote); //does this even get used tho?
+																														 //MOVE THE OBJECT
+				if (objectToMove.tag != "Player") {
+					objectToMove.transform.parent = pointer.transform; //works because it gets parented, so it follows rotation etc from the controller.
+				} else {
+					objectToMove.transform.position = new Vector3(objectToMove.transform.position.x + OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote).y * 10f,
+																				objectToMove.transform.position.y,
+																				objectToMove.transform.position.z + OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote).x * 10f);
+				}
 				Debug.Log("set the parent of this object");
 			}
 		} else if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger)) { //let go object
@@ -233,6 +241,11 @@ public class InputManager : MonoBehaviour {
 
 		if(OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger)){
 			if (objectToMove != null) {
+				if(objectToMove.tag == "Player") {
+					objectToMove.transform.position = new Vector3(objectToMove.transform.position.x + OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote).y * 10f,
+																				objectToMove.transform.position.y,
+																				objectToMove.transform.position.z + OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote).x * 10f);
+				}
 				Vector3 currPos = objectToMove.transform.position;
 				prevPos = currPos;
 			}
