@@ -11918,6 +11918,25 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1560406597711112, guid: 4fbe034e1fa555e46aaa6af3b4c3457a, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114924029779793638, guid: 4fbe034e1fa555e46aaa6af3b4c3457a,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1527391020}
+    - target: {fileID: 114924029779793638, guid: 4fbe034e1fa555e46aaa6af3b4c3457a,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: restartGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 114924029779793638, guid: 4fbe034e1fa555e46aaa6af3b4c3457a,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4fbe034e1fa555e46aaa6af3b4c3457a, type: 2}
   m_IsPrefabAsset: 0
@@ -14856,6 +14875,7 @@ MonoBehaviour:
   - {fileID: 654600881}
   theActualDanger: 2
   theCorrectWastebin: 0
+  theEndScreen: {fileID: 1349492172}
 --- !u!4 &1527391021
 Transform:
   m_ObjectHideFlags: 0
@@ -14895,7 +14915,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1528863763}
   m_LocalRotation: {x: 0.000000116977205, y: 0.062477738, z: 0.00000015512549, w: -0.9980464}
-  m_LocalPosition: {x: 0, y: 0, z: 0.029}
+  m_LocalPosition: {x: 0, y: 0, z: -1.68}
   m_LocalScale: {x: 0.009800017, y: 0.49074936, z: 1.9597837}
   m_Children: []
   m_Father: {fileID: 1621276284}
@@ -14903,7 +14923,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: -7.1640005, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.071, y: 3.76}
+  m_AnchoredPosition: {x: 0.14, y: 3.76}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &1528863765

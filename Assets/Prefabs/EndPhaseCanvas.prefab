@@ -75,9 +75,10 @@ GameObject:
   - component: {fileID: 222621315506829000}
   - component: {fileID: 114048618200884398}
   - component: {fileID: 114924029779793638}
-  m_Layer: 0
+  - component: {fileID: 65888086130479812}
+  m_Layer: 9
   m_Name: Button
-  m_TagString: Untagged
+  m_TagString: UIButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,6 +100,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!65 &65888086130479812
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1860438225669996}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 159.24, y: 29.36, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114048618200884398
 MonoBehaviour:
   m_ObjectHideFlags: 1

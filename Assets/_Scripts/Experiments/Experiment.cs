@@ -46,8 +46,13 @@ public class Experiment : MonoBehaviour {
 	[Header("required variables for this experiment")]
 	public ExperimentController.ExperimentDangers theActualDanger;
 	public ExperimentController.ExperimentWasteBin theCorrectWastebin;
-	
+
+	[Header("Misc.")]
+	private sfxManager theSFXManager;
+	public GameObject theEndScreen;
+
 	private void Start() {
+		theSFXManager = FindObjectOfType<sfxManager>();
 		if (experimentController == null) {
 			experimentController = GameObject.FindGameObjectWithTag("GameController").GetComponent<ExperimentController>();
 		}
@@ -195,6 +200,8 @@ public class Experiment : MonoBehaviour {
 	}
 
 	public void restartGame() {
+		theEndScreen.SetActive(false);
 		Application.LoadLevel(Application.loadedLevel);
+		theSFXManager.PlaySound(theSFXManager.clickSFX);
 	}
 }
