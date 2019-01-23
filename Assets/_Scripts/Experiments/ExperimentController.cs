@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class ExperimentController : MonoBehaviour {
 
@@ -11,10 +12,24 @@ public class ExperimentController : MonoBehaviour {
 	public enum ExperimentDifficulty {Easy, Middle, Hard};
 	public enum ExperimentWasteBin { Flammable, Acidic, TheOtherOne};
 
+	public List<Experiment> allExperiments = new List<Experiment>();
+
 	public float checkTimer;
 
-	public void InitiateNewExperiment() {
-		//instantiate new experiment
-		Experiment experiment;
+	public void CheckAllExperiments() {
+		bool activate = false;
+		
+		for(int e = 0; e < allExperiments.Count; e++) {
+			if (!allExperiments[e].experimentStopped) {
+				activate = false;
+				break;
+			}
+			activate = true;
+		}
+		
+		if (activate) {
+			//ActivateEndPhase();
+			//TODO add youri's endphase
+		}
 	}
 }
