@@ -139,6 +139,7 @@ public class InputManager : MonoBehaviour {
 					if (hitInfo.transform.tag == "Teleport") { //teleport
 						cameraTargetPos = new Vector3(hitInfo.transform.position.x, cameraHeight, hitInfo.transform.position.z);
 						screenFade.StartCoroutine(screenFade.Fade(1, 0, 0.5f));
+						theSFXManager.PlaySound(theSFXManager.pickup1SFX);
 						MoveCamera();
 						return;
 					}
@@ -148,12 +149,13 @@ public class InputManager : MonoBehaviour {
 						IPointerClickHandler clickHandler = tempButton.GetComponent<IPointerClickHandler>();
 						PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
 						clickHandler.OnPointerClick(pointerEventData);
+						theSFXManager.PlaySound(theSFXManager.clickSFX);
 						//play sound effect (button click);
 						return;
 					}
 
 
-					if (hitInfo.transform.tag == "Book" && amountBookTouched == 0 && theBookScript.restartTutorial == false) {
+					if (hitInfo.transform.tag == "Book" && theBookScript.restartTutorial == false) {
 						// Not movable, otherwise people will lose the book
 						/*objectToMove = hitInfo.transform.gameObject;
 						objectToMoveRb = objectToMove.GetComponent<Rigidbody>();
@@ -164,14 +166,13 @@ public class InputManager : MonoBehaviour {
 						touchingBook = true;
 						bookPage += 1;
 						amountBookTouched = 1;
+						theSFXManager.PlaySound(theSFXManager.impact1SFX);
 						return;
-					} 
-					else if(theBookScript.restartTutorial == true) {
-						touchingBook = true;
+					} else if(theBookScript.restartTutorial == true) {
+						touchingBook = false;
 						bookPage = 0;
 						amountBookTouched = 0;
-					}						
-					else {
+					} else {
 						touchingBook = false;
 						amountBookTouched = 0;
 						return;						
