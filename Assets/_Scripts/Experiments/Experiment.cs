@@ -38,6 +38,7 @@ public class Experiment : MonoBehaviour {
 	public bool allDangersPresent;
 
 	public bool experimentStarted;
+	public bool experimentStopped;
 	#endregion
 
 	public List<Student> students = new List<Student>(); //local list of students to address.
@@ -51,7 +52,7 @@ public class Experiment : MonoBehaviour {
 			experimentController = GameObject.FindGameObjectWithTag("GameController").GetComponent<ExperimentController>();
 		}
 
-		//experimentFailureTimer = experimentController.checkTimer;
+		experimentFailureTimer = experimentController.checkTimer;
 	}
 
 	public void Update() {
@@ -62,6 +63,11 @@ public class Experiment : MonoBehaviour {
 				CheckForFailure();
 				experimentFailureTimer = (int)Time.time + 1f;
 			}
+			experimentTime -= (int)Time.deltaTime;
+		}
+
+		if(experimentTime <= 0) {
+			ExperimentStop();
 		}
 	}
 
@@ -70,7 +76,7 @@ public class Experiment : MonoBehaviour {
 		if(Random.Range(0f, 1f) < experimentFailureProbability * 100){ //TODO reset this to actual values?
 			int randomStudent = Random.Range(0, students.Count);
 			students[randomStudent].studentMovable = true; //sets a random student movable.
-			switch (dangers[(int)theActualDanger]) {
+			switch (dangers[(int)theActualDanger]) { //TODO can be simplified.
 				case ExperimentController.ExperimentDangers.Fire:
 					students[randomStudent].ActivateParticles(0, true);
 					break;
@@ -174,5 +180,17 @@ public class Experiment : MonoBehaviour {
 				experimentFailureProbability++;
 			}
 		}
+	}
+
+	//set everything back to false
+	public void ExperimentStop() {
+		experimentStarted = false;
+		experimentGoingWrong = false;
+		foreach(Student student in students) {
+			student.experimentStarted = false;
+			student.studentMovable = false;
+		}
+
+		experimentStopped = true;
 	}
 }

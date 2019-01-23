@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class ExperimentController : MonoBehaviour {
 
@@ -15,5 +16,20 @@ public class ExperimentController : MonoBehaviour {
 
 	public float checkTimer;
 
-	
+	public void CheckAllExperiments() {
+		bool activate = false;
+		
+		for(int e = 0; e < allExperiments.Count; e++) {
+			if (!allExperiments[e].experimentStopped) {
+				activate = false;
+				break;
+			}
+			activate = true;
+		}
+		
+		if (activate) {
+			//ActivateEndPhase();
+			//TODO add youri's endphase
+		}
+	}
 }
