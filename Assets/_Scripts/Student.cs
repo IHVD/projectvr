@@ -66,7 +66,6 @@ public class Student : MonoBehaviour {
 			SnapOnPoint snap = other.GetComponent<SnapOnPoint>();
 			if(snap.danger == myExperiment.theActualDanger) {
 				transform.localPosition = snap.studentPos;
-
 				//other.transform.localPosition;
 				studentMovable = false;
 				GameController.gCont.inputManager.objectToMove.transform.parent = null;

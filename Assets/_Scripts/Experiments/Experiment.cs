@@ -74,7 +74,7 @@ public class Experiment : MonoBehaviour {
 
 	public void CheckForFailure() {
 		//based on requirements, danger, type etc, it should be more or less difficult to complete the experiment.
-		if(Random.Range(0f, 50f) < experimentFailureProbability) { //TODO reset this to actual values?
+		if(Random.Range(0f, 200f) < experimentFailureProbability) { //TODO reset this to actual values?
 			int randomStudent = Random.Range(0, students.Count);
 			students[randomStudent].studentMovable = true; //sets a random student movable.
 			switch (dangers[(int)theActualDanger]) { //TODO can be simplified.
