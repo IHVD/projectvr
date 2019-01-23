@@ -14862,6 +14862,7 @@ MonoBehaviour:
   type: 1
   difficulty: 0
   experimentTime: 10
+  experimentTimeStart: 10
   experimentFailureProbability: 0
   experimentFailureTimer: 0
   textExperiment: {fileID: 1528863763}

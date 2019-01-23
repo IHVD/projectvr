@@ -28,6 +28,7 @@ public class Experiment : MonoBehaviour {
 
 	#region Experiment Local Variables
 	public float experimentTime;
+	public float experimentTimeStart;
 	public float experimentFailureProbability; //percentage
 	public float experimentFailureTimer;
 
@@ -51,7 +52,7 @@ public class Experiment : MonoBehaviour {
 		if (experimentController == null) {
 			experimentController = GameObject.FindGameObjectWithTag("GameController").GetComponent<ExperimentController>();
 		}
-
+		experimentTime = experimentTimeStart;
 		experimentFailureTimer = experimentController.checkTimer;
 	}
 

@@ -51,7 +51,7 @@ public class Student : MonoBehaviour {
 	public void ActivateExperiment() {
 		if(!experimentStarted)
 			experimentStarted = true;
-
+		myExperiment.experimentTime = myExperiment.experimentTimeStart;
 		myExperiment.ExperimentStart();
 		GetComponent<PlayerStatusUI>().removePlayerStatus();
 	}
