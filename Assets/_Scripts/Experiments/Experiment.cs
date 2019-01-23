@@ -29,7 +29,9 @@ public class Experiment : MonoBehaviour {
 	#region Experiment Local Variables
 	public float experimentTime;
 	public float experimentFailureProbability; //percentage
-	float experimentFailureTimer;
+	public float experimentFailureTimer;
+
+	public GameObject textExperiment;
 
 	public bool experimentGoingWrong;
 	public bool allRequirementsPresent;
@@ -44,18 +46,18 @@ public class Experiment : MonoBehaviour {
 	public ExperimentController.ExperimentDangers theActualDanger;
 	public ExperimentController.ExperimentWasteBin theCorrectWastebin;
 	
-
 	private void Start() {
 		if (experimentController == null) {
 			experimentController = GameObject.FindGameObjectWithTag("GameController").GetComponent<ExperimentController>();
 		}
 
-		experimentFailureTimer = experimentController.checkTimer;
+		//experimentFailureTimer = experimentController.checkTimer;
 	}
 
 	public void Update() {
 		//checks every second for failure.
 		if (experimentStarted) {
+			textExperiment.SetActive(true);
 			if (experimentFailureTimer < Time.time) {
 				CheckForFailure();
 				experimentFailureTimer = (int)Time.time + 1f;
