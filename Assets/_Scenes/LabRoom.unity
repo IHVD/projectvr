@@ -11926,7 +11926,7 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1527391020}
+      objectReference: {fileID: 905690900}
     - target: {fileID: 114924029779793638, guid: 4fbe034e1fa555e46aaa6af3b4c3457a,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -14875,7 +14875,6 @@ MonoBehaviour:
   - {fileID: 654600881}
   theActualDanger: 2
   theCorrectWastebin: 0
-  theEndScreen: {fileID: 1349492172}
 --- !u!4 &1527391021
 Transform:
   m_ObjectHideFlags: 0

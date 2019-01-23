@@ -47,12 +47,7 @@ public class Experiment : MonoBehaviour {
 	public ExperimentController.ExperimentDangers theActualDanger;
 	public ExperimentController.ExperimentWasteBin theCorrectWastebin;
 
-	[Header("Misc.")]
-	private sfxManager theSFXManager;
-	public GameObject theEndScreen;
-
 	private void Start() {
-		theSFXManager = FindObjectOfType<sfxManager>();
 		if (experimentController == null) {
 			experimentController = GameObject.FindGameObjectWithTag("GameController").GetComponent<ExperimentController>();
 		}
@@ -61,6 +56,7 @@ public class Experiment : MonoBehaviour {
 	}
 
 	public void Update() {
+		//print(experimentTime);
 		//checks every second for failure.
 		if (experimentStarted) {
 			textExperiment.SetActive(true);
@@ -68,7 +64,7 @@ public class Experiment : MonoBehaviour {
 				CheckForFailure();
 				experimentFailureTimer = (int)Time.time + 1f;
 			}
-			experimentTime -= (int)Time.deltaTime;
+			experimentTime -= Time.deltaTime;
 		}
 
 		if(experimentTime <= 0) {
@@ -189,19 +185,13 @@ public class Experiment : MonoBehaviour {
 
 	//set everything back to false
 	public void ExperimentStop() {
+		textExperiment.SetActive(false);
 		experimentStarted = false;
 		experimentGoingWrong = false;
 		foreach(Student student in students) {
 			student.experimentStarted = false;
 			student.studentMovable = false;
 		}
-
 		experimentStopped = true;
-	}
-
-	public void restartGame() {
-		theEndScreen.SetActive(false);
-		Application.LoadLevel(Application.loadedLevel);
-		theSFXManager.PlaySound(theSFXManager.clickSFX);
 	}
 }
