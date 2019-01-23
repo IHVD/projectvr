@@ -116,9 +116,9 @@ public class InputManager : MonoBehaviour {
 								objectToMoveRb.useGravity = false;
 								//objectToMoveRb = objectToMove.GetComponent<Rigidbody>();
 								//objectToMove.transform.parent = pointer.transform;
-								objectToMove.transform.position = new Vector3(	objectToMove.transform.position.x + OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote).y * 10f, 
+								objectToMove.transform.position = new Vector3(	objectToMove.transform.position.x + OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote).y * 4f * Time.deltaTime, 
 																				objectToMove.transform.position.y, 
-																				objectToMove.transform.position.z + OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote).x * 10f);
+																				objectToMove.transform.position.z + OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote).x * 4f * Time.deltaTime);
 								//objectToMove.transform.rotation = pointer.transform.rotation; //TODO doesnt rotate well oof.
 								objectToMove.transform.LookAt(pointer.transform.parent);
 								if (objectToMoveRb != null) {
@@ -208,9 +208,9 @@ public class InputManager : MonoBehaviour {
 				if (objectToMove.tag != "Player") {
 					objectToMove.transform.parent = pointer.transform; //works because it gets parented, so it follows rotation etc from the controller.
 				} else {
-					objectToMove.transform.position = new Vector3(objectToMove.transform.position.x + OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote).y * 10f,
+					objectToMove.transform.position = new Vector3(objectToMove.transform.position.x + OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote).y * 4f * Time.deltaTime,
 																				objectToMove.transform.position.y,
-																				objectToMove.transform.position.z + OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote).x * 10f);
+																				objectToMove.transform.position.z + OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote).x * 4f * Time.deltaTime);
 				}
 				Debug.Log("set the parent of this object");
 			}
@@ -230,7 +230,7 @@ public class InputManager : MonoBehaviour {
 					student.transform.position = student.originalPosition;
 					student.inSnapPoint = false;
 					student.studentMovable = true;
-					student.transform.rotation = student.originalRotation;
+					//student.transform.rotation = student.originalRotation;
 				}
 
 				objectToMove = null;
@@ -241,9 +241,9 @@ public class InputManager : MonoBehaviour {
 		if(OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger)){
 			if (objectToMove != null) {
 				if(objectToMove.tag == "Player") {
-					objectToMove.transform.position = new Vector3(objectToMove.transform.position.x + OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote).y * 2f,
+					objectToMove.transform.position = new Vector3(objectToMove.transform.position.x + OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote).y * 4f * Time.deltaTime,
 																				objectToMove.transform.position.y,
-																				objectToMove.transform.position.z + OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote).x * 2f);
+																				objectToMove.transform.position.z + OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote).x * 4f * Time.deltaTime);
 				}
 				Vector3 currPos = objectToMove.transform.position;
 				prevPos = currPos;

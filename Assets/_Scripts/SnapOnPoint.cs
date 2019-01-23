@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SnapOnPoint : MonoBehaviour {
+
+	public Vector3 studentPos;
+
 	public int pointType;
 	public ExperimentController.ExperimentDangers danger;
 

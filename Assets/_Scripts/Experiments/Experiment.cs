@@ -79,6 +79,7 @@ public class Experiment : MonoBehaviour {
 					students[randomStudent].ActivateParticles(2, true);
 					break;
 			}
+			experimentGoingWrong = true;
 		}
 	}
 
