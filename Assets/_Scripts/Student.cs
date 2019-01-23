@@ -39,7 +39,7 @@ public class Student : MonoBehaviour {
 	}
 
 	public void ActivateWastebin(int bin, bool activate) {
-		buttons_waste.transform.GetChild(bin).GetComponent<Image>().sprite = (activate ? dangerTextures[bin] : dangerTextures[bin + 3]); //activate? true : false (false + 3 because they will be after the coloured textures);
+		buttons_waste.transform.GetChild(bin).GetComponent<Image>().sprite = (activate ? wasteTextures[bin] : wasteTextures[bin + 3]); //activate? true : false (false + 3 because they will be after the coloured textures);
 	}
 
 	public void ActivateParticles(int danger, bool activate) {

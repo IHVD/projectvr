@@ -1722,7 +1722,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: bf5982705eb1bef419a6aaf64ae0c146, type: 3}
   - {fileID: 21300000, guid: 5126949cd05b118418d9f1f3fd559c08, type: 3}
   - {fileID: 21300000, guid: 94da2ba7dd1ccba4fa1bc204627be23a, type: 3}
-  studentMovable: 0
+  studentMovable: 1
   inSnapPoint: 0
   timeForSnapResolve: 2
   myExperiment: {fileID: 0}

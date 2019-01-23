@@ -1891,7 +1891,7 @@ MonoBehaviour:
   text_trigger: {fileID: 114241203909703178}
   text_rotation: {fileID: 114995832370629978}
   pointerLine: {fileID: 120282766933924170}
-  velocityMultiplier: 1
+  velocityMultiplier: 0.2
   objectToMove: {fileID: 0}
   objectToMoveRb: {fileID: 0}
   cameraTargetPos: {x: 0, y: 0, z: 0}
@@ -1906,6 +1906,9 @@ MonoBehaviour:
     ocGoAx: 0
     ocRiftAx: 0
     pressed: 0
+  touchingBook: 0
+  bookPage: 0
+  amountBookTouched: 0
 --- !u!114 &114305095570016866
 MonoBehaviour:
   m_ObjectHideFlags: 1
