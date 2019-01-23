@@ -9,6 +9,8 @@ public class GameController : MonoBehaviour {
 
 	public InputManager inputManager;
 
+    public GameOverManager theGameOverManager;
+
 	public float score = 2;
 	public float scoreIncreasePerSecond = 3;
 
@@ -17,7 +19,8 @@ public class GameController : MonoBehaviour {
 		score += scoreIncreasePerSecond * Time.deltaTime;
 	}
 	public void Start() {
-		gCont = this;
+        theGameOverManager = FindObjectOfType<GameOverManager>();
+        gCont = this;
 		gVars.StartCoroutine(gVars.CSVLoad(gVars.urlToDownload));
 	}
 

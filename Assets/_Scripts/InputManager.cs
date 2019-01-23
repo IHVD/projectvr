@@ -80,13 +80,6 @@ public class InputManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		fwd = pointer.transform.TransformDirection(Vector3.forward);
-		text_trigger.text = "" + OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger);
-
-		if (ButtonWePressed(Inputs.interact)) {
-			text_debug.text = ("working!!");
-		} else {
-			text_debug.text = ("not working!!");
-		}
 
 		//raycast for the pointer thing
 		RaycastHit hit;
@@ -96,7 +89,6 @@ public class InputManager : MonoBehaviour {
 		}
 
 		UpdatePointer();
-
 		if (ButtonWePressed(Inputs.interact)) {
 	
 			if (objectToMove == null) { //Already have an object so dont have to fire again.
@@ -105,22 +97,23 @@ public class InputManager : MonoBehaviour {
 				if (Physics.Raycast(pointer.transform.position, fwd, out hitInfo, Mathf.Infinity, LayerMask.GetMask("Interactable"))) { //TODO change range
 					if (hitInfo.transform.tag == "Player"){
 						Student student = hitInfo.transform.GetComponent<Student>();
-						if(!student.myExperiment.experimentStarted && !student.experimentStarted) {
+						if(!student.myExperiment.experimentStarted && !student.experimentStarted && !student.myExperiment.experimentStopped) {
 							CloseStudentUI(student);
 						} else { //so if it did start;
 							if (student.myExperiment.experimentGoingWrong && student.studentMovable) { //and the experiment is going wrong;
 								//be able to pick up the student.
-
 								objectToMove = student.transform.gameObject;
 								objectToMoveRb =  objectToMove.AddComponent<Rigidbody>();
-								objectToMoveRb.useGravity = false;
+								if (objectToMoveRb != null) {
+									objectToMoveRb.useGravity = false;
+								}
 								//objectToMoveRb = objectToMove.GetComponent<Rigidbody>();
 								//objectToMove.transform.parent = pointer.transform;
 								objectToMove.transform.position = new Vector3(	objectToMove.transform.position.x + OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote).y * 4f * Time.deltaTime, 
 																				objectToMove.transform.position.y, 
 																				objectToMove.transform.position.z + OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote).x * 4f * Time.deltaTime);
-								//objectToMove.transform.rotation = pointer.transform.rotation; //TODO doesnt rotate well oof.
-								objectToMove.transform.LookAt(pointer.transform.parent);
+								//objectToMove.transform.rotation = pointer.transform.rotation;
+								//objectToMove.transform.LookAt(pointer.transform.parent);
 								if (objectToMoveRb != null) {
 									objectToMoveRb.isKinematic = true;
 								}
@@ -194,13 +187,11 @@ public class InputManager : MonoBehaviour {
 						return;
 					}
 
-					text_debug.text = "Currently Hitting: " + hitInfo.transform.name;
 
 					//if (prevRotation != prevRotation) {
 						prevRotation = OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote);
 					//}
 
-					Debug.Log(objectToMove);
 				} //end of raycast
 			} else { 
 				Quaternion controllerRotation = OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote); //does this even get used tho?
@@ -212,15 +203,16 @@ public class InputManager : MonoBehaviour {
 																				objectToMove.transform.position.y,
 																				objectToMove.transform.position.z + OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote).x * 4f * Time.deltaTime);
 				}
-				Debug.Log("set the parent of this object");
 			}
 		} else if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger)) { //let go object
 			if (objectToMove != null) {
 				objectToMove.transform.parent = null;
-				objectToMoveRb.isKinematic = false;
-
 				Vector3 currPos = objectToMove.transform.position;
-				objectToMoveRb.velocity = (currPos - prevPos) / Time.deltaTime * velocityMultiplier;
+				if (objectToMoveRb != null) {
+					objectToMoveRb.isKinematic = false;
+					objectToMoveRb.velocity = (currPos - prevPos) / Time.deltaTime * velocityMultiplier;
+				}
+				
 
 				if (objectToMove.tag == "Player") { //TODO something here goes wrong @luuk, please check with rift in console/inspector
 					Student student = objectToMove.GetComponent<Student>();
@@ -249,10 +241,6 @@ public class InputManager : MonoBehaviour {
 				prevPos = currPos;
 			}
 		}
-
-		//To see the rotational debug stuff.
-		text_rotation.text = "Q: " + OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote) + "\n" + "V: " + OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote).eulerAngles;
-		
 	}
 
 	public void MoveCamera() {

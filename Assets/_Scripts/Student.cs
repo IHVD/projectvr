@@ -59,24 +59,21 @@ public class Student : MonoBehaviour {
 
 
 	private void OnTriggerEnter(Collider other) {
-		print(other.name);
 		if(other.tag == "SnapOnPoint") {
-
 			//snap to point of said danger.
 			//get rid of danger (disable the acid fire/burn/bleed)
 			//be able to pick em back up again (or click on them to move back to originalPosition)
 			SnapOnPoint snap = other.GetComponent<SnapOnPoint>();
 			if(snap.danger == myExperiment.theActualDanger) {
 				transform.localPosition = snap.studentPos;
+
 				//other.transform.localPosition;
-				print("other transform localPos: " + other.transform.localPosition);
 				studentMovable = false;
 				GameController.gCont.inputManager.objectToMove.transform.parent = null;
 				GameController.gCont.inputManager.objectToMove = null;
 				inSnapPoint = true;
 
 				//start a timer.
-				print("OH SNAP!");
 				StartCoroutine(DangerResolver());
 			} else {
 				SnapDone(false);

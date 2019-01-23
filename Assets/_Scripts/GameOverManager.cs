@@ -13,24 +13,19 @@ public class GameOverManager : MonoBehaviour {
 	//acces to the score text 
 	public Text scoreValue;
 
-	void EndPhaseStart() {
-		if(ExperimentTimeLeft >= 0){
-			EndPhaseCanvas.SetActive(false);
-		}
-		else
-			EndPhaseCanvas.SetActive(true);		
+	public void EndPhaseStart() {
+        Time.timeScale = 0f;
+        EndPhaseCanvas.SetActive(true);		
 	}
 	// Use this for initialization
 	void Update () {
 		//set the text of the score
 		scoreValue.text = GameController.gCont.score.ToString();
-	
 	}
-	
-	// Update is called once per frame
+
 
 	//put on restart button so game resets properly
 	public void RestartGame(){
-		//Experiment.ScoreInstance.ResetGameVoidWeNeedToMake <--- resets score and puts player back in starting point, only puts back in starting point if the canvas stays in the same scene
+		
 	}
 }

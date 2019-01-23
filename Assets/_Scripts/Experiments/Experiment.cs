@@ -57,7 +57,6 @@ public class Experiment : MonoBehaviour {
 	}
 
 	public void Update() {
-		//print(experimentTime);
 		//checks every second for failure.
 		if (experimentStarted) {
 			textExperiment.SetActive(true);
@@ -75,7 +74,7 @@ public class Experiment : MonoBehaviour {
 
 	public void CheckForFailure() {
 		//based on requirements, danger, type etc, it should be more or less difficult to complete the experiment.
-		if(Random.Range(0f, 1f) < experimentFailureProbability * 100){ //TODO reset this to actual values?
+		if(Random.Range(0f, 50f) < experimentFailureProbability) { //TODO reset this to actual values?
 			int randomStudent = Random.Range(0, students.Count);
 			students[randomStudent].studentMovable = true; //sets a random student movable.
 			switch (dangers[(int)theActualDanger]) { //TODO can be simplified.
@@ -140,7 +139,7 @@ public class Experiment : MonoBehaviour {
 		//set each false, and the required to true.
 		foreach (Student student in students) {
 			for(int w = 0; w < wasteBinUsed.Count; w++) {
-				student.ActivateWastebin(bin, false);
+				student.ActivateWastebin(w, false);
 			}
 			student.ActivateWastebin(bin, true);
 		}
@@ -194,5 +193,6 @@ public class Experiment : MonoBehaviour {
 			student.studentMovable = false;
 		}
 		experimentStopped = true;
+        experimentController.CheckAllExperiments();
 	}
 }

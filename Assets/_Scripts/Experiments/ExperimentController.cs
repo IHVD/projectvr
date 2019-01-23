@@ -30,11 +30,13 @@ public class ExperimentController : MonoBehaviour {
 		if (activate) {
 			//ActivateEndPhase();
 			print("End phase!!!");
-			//TODO add youri's endphase
-		}
+            GameController.gCont.theGameOverManager.EndPhaseStart();
+            //TODO add youri's endphase
+        }
 	}
 	public void restartGame() {
-		Application.LoadLevel(Application.loadedLevel);
+        Time.timeScale = 1f;
+        Application.LoadLevel(Application.loadedLevel);
 	}
 
 }
