@@ -11,15 +11,6 @@ public class GameVariables : MonoBehaviour {
 
 	public Dictionary<string, int> downloadedVariables = new Dictionary<string, int>();
 
-	/*private void Start() {
-		if (urlToDownload == "") {
-			Debug.Log("No URL, stopping the Load!");
-			return;
-		}
-
-		StartCoroutine(CSVLoad(urlToDownload));
-	}*/
-
 	public IEnumerator CSVLoad(string urlToDownload) {
 		WWW urlRetrieved = new WWW(urlToDownload);
 

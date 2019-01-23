@@ -5,7 +5,7 @@ using System.Linq;
 
 public class Experiment : MonoBehaviour {
 
-	public ExperimentController experimentController; //TODO not sure if needed.
+	public ExperimentController experimentController;
 
 	#region Experiment Controller Variables
 	[Header("DO NOT CHANGE ORDER OF VALUES IN DANGER/REQUIRE!")]
@@ -74,10 +74,11 @@ public class Experiment : MonoBehaviour {
 
 	public void CheckForFailure() {
 		//based on requirements, danger, type etc, it should be more or less difficult to complete the experiment.
-		if(Random.Range(0f, 200f) < experimentFailureProbability) { //TODO reset this to actual values?
+		if(Random.Range(0f, 125f) < experimentFailureProbability) { 
 			int randomStudent = Random.Range(0, students.Count);
 			students[randomStudent].studentMovable = true; //sets a random student movable.
-			switch (dangers[(int)theActualDanger]) { //TODO can be simplified.
+			students[randomStudent].ActivateParticles((int)theActualDanger, true);
+			/*switch (dangers[(int)theActualDanger]) { 
 				case ExperimentController.ExperimentDangers.Fire:
 					students[randomStudent].ActivateParticles(0, true);
 					break;
@@ -87,7 +88,7 @@ public class Experiment : MonoBehaviour {
 				case ExperimentController.ExperimentDangers.Physical:
 					students[randomStudent].ActivateParticles(2, true);
 					break;
-			}
+			}*/
 			experimentGoingWrong = true;
 		}
 	}

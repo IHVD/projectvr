@@ -84,9 +84,8 @@ public class InputManager : MonoBehaviour {
 
 		//raycast for the pointer thing
 		RaycastHit hit;
-		if (Physics.Raycast(pointer.transform.position, fwd, out hit, Mathf.Infinity)) { //TODO I dont want to be using a continuous raycast for this buy maybe we can anyway if it doesnt affect performance anyway
+		if (Physics.Raycast(pointer.transform.position, fwd, out hit, Mathf.Infinity)) {
 			pointerLength = hit.distance;
-			//Debug.Log(hit.transform.name);
 		}
 
 		UpdatePointer();
@@ -95,7 +94,7 @@ public class InputManager : MonoBehaviour {
 			if (objectToMove == null) { //Already have an object so dont have to fire again.
 				RaycastHit hitInfo;
 
-				if (Physics.Raycast(pointer.transform.position, fwd, out hitInfo, Mathf.Infinity, LayerMask.GetMask("Interactable"))) { //TODO change range
+				if (Physics.Raycast(pointer.transform.position, fwd, out hitInfo, Mathf.Infinity, LayerMask.GetMask("Interactable"))) {
 					if (hitInfo.transform.tag == "Player"){
 						Student student = hitInfo.transform.GetComponent<Student>();
 						if(!student.myExperiment.experimentStarted && !student.experimentStarted && !student.myExperiment.experimentStopped) {
@@ -215,7 +214,7 @@ public class InputManager : MonoBehaviour {
 				}
 				
 
-				if (objectToMove.tag == "Player") { //TODO something here goes wrong @luuk, please check with rift in console/inspector
+				if (objectToMove.tag == "Player") {
 					Student student = objectToMove.GetComponent<Student>();
 					objectToMoveRb = null;
 					Destroy(objectToMove.GetComponent<Rigidbody>()); //should theoretically remove the rigidbody component.

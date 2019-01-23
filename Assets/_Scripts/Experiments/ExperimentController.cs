@@ -29,9 +29,8 @@ public class ExperimentController : MonoBehaviour {
 		
 		if (activate) {
 			//ActivateEndPhase();
-			print("End phase!!!");
             GameController.gCont.theGameOverManager.EndPhaseStart();
-            //TODO add youri's endphase
+           
         }
 	}
 	public void restartGame() {
