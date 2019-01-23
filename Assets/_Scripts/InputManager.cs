@@ -154,12 +154,13 @@ public class InputManager : MonoBehaviour {
 
 
 					if (hitInfo.transform.tag == "Book" && amountBookTouched == 0 && theBookScript.restartTutorial == false) {
-						objectToMove = hitInfo.transform.gameObject;
+						// Not movable, otherwise people will lose the book
+						/*objectToMove = hitInfo.transform.gameObject;
 						objectToMoveRb = objectToMove.GetComponent<Rigidbody>();
 						objectToMove.transform.parent = pointer.transform;
 						if (objectToMoveRb != null) {
 							objectToMoveRb.isKinematic = true;
-						}
+						}*/
 						touchingBook = true;
 						bookPage += 1;
 						amountBookTouched = 1;
