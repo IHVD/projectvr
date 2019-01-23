@@ -193,4 +193,8 @@ public class Experiment : MonoBehaviour {
 
 		experimentStopped = true;
 	}
+
+	public void restartGame() {
+		Application.LoadLevel(Application.loadedLevel);
+	}
 }
