@@ -27,4 +27,5 @@ public class sfxManager : MonoBehaviour {
 		sound.pitch = Random.Range(lowPitchRange, highPitchRange); 
 		sound.Play(0);
 	}
+
 }
