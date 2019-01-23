@@ -105,9 +105,8 @@ public class InputManager : MonoBehaviour {
 				if (Physics.Raycast(pointer.transform.position, fwd, out hitInfo, Mathf.Infinity, LayerMask.GetMask("Interactable"))) { //TODO change range
 					if (hitInfo.transform.tag == "Player"){
 						Student student = hitInfo.transform.GetComponent<Student>();
-						if(!student.myExperiment.experimentStarted) {
-							PlayerUI = hitInfo.transform.GetComponent<PlayerStatusUI>();
-							PlayerUI.removePlayerStatus();
+						if(!student.myExperiment.experimentStarted && !student.experimentStarted) {
+							CloseStudentUI(student);
 						} else { //so if it did start;
 							if (student.myExperiment.experimentGoingWrong && student.studentMovable) { //and the experiment is going wrong;
 								//be able to pick up the student.
@@ -178,13 +177,11 @@ public class InputManager : MonoBehaviour {
 						touchingBook = false;
 						amountBookTouched = 0;
 						return;						
-					}		
-						
+					}
+
 					if (hitInfo.transform.tag == "ground") {
 						return;
 					}
-
-					Debug.Log(hitInfo.transform.tag);
 
 					if(hitInfo.transform.tag == "Movable") {
 
@@ -244,9 +241,9 @@ public class InputManager : MonoBehaviour {
 		if(OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger)){
 			if (objectToMove != null) {
 				if(objectToMove.tag == "Player") {
-					objectToMove.transform.position = new Vector3(objectToMove.transform.position.x + OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote).y * 10f,
+					objectToMove.transform.position = new Vector3(objectToMove.transform.position.x + OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote).y * 2f,
 																				objectToMove.transform.position.y,
-																				objectToMove.transform.position.z + OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote).x * 10f);
+																				objectToMove.transform.position.z + OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote).x * 2f);
 				}
 				Vector3 currPos = objectToMove.transform.position;
 				prevPos = currPos;
@@ -288,5 +285,9 @@ public class InputManager : MonoBehaviour {
 	public void UpdatePointer() {
 		pointerLine.SetPosition(0, pointer.transform.position);
 		pointerLine.SetPosition(1, pointer.transform.position + fwd * pointerLength);
+	}
+
+	public void CloseStudentUI(Student student) {
+		student.transform.GetComponent<PlayerStatusUI>().removePlayerStatus();
 	}
 }

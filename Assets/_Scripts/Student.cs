@@ -21,6 +21,8 @@ public class Student : MonoBehaviour {
 	public bool studentMovable;
 	public bool inSnapPoint;
 
+	public bool experimentStarted;
+
 	public float timeForSnapResolve;
 
 	public Experiment myExperiment;
@@ -44,6 +46,14 @@ public class Student : MonoBehaviour {
 
 	public void ActivateParticles(int danger, bool activate) {
 		particles[danger].SetActive(activate);
+	}
+
+	public void ActivateExperiment() {
+		if(!experimentStarted)
+			experimentStarted = true;
+
+		myExperiment.ExperimentStart();
+		GetComponent<PlayerStatusUI>().removePlayerStatus();
 	}
 
 	private void OnTriggerEnter(Collider other) {

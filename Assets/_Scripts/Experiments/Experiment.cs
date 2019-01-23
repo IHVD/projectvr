@@ -137,7 +137,13 @@ public class Experiment : MonoBehaviour {
 
 	public void ExperimentStart() { //need to check this because this probably doesn't work, array doesn't resize correctly.
 		if (allRequirementsPresent) {
-			experimentStarted = true;
+			for(int i = 0; i < students.Count; i++) {
+				if (!students[0].experimentStarted) {
+					break;
+				} else {
+					experimentStarted = true;
+				}
+			}
 		}
 
 		for(int r = 0; r < requirementsNecessary.Count; r++) {
