@@ -11,10 +11,9 @@ public class ExperimentController : MonoBehaviour {
 	public enum ExperimentDifficulty {Easy, Middle, Hard};
 	public enum ExperimentWasteBin { Flammable, Acidic, TheOtherOne};
 
+	public List<Experiment> allExperiments = new List<Experiment>();
+
 	public float checkTimer;
 
-	public void InitiateNewExperiment() {
-		//instantiate new experiment
-		Experiment experiment;
-	}
+	
 }
