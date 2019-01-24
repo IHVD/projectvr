@@ -78,18 +78,8 @@ public class Experiment : MonoBehaviour {
 			int randomStudent = Random.Range(0, students.Count);
 			students[randomStudent].studentMovable = true; //sets a random student movable.
 			students[randomStudent].ActivateParticles((int)theActualDanger, true);
-			/*switch (dangers[(int)theActualDanger]) { 
-				case ExperimentController.ExperimentDangers.Fire:
-					students[randomStudent].ActivateParticles(0, true);
-					break;
-				case ExperimentController.ExperimentDangers.Acid:
-					students[randomStudent].ActivateParticles(1, true);
-					break;
-				case ExperimentController.ExperimentDangers.Physical:
-					students[randomStudent].ActivateParticles(2, true);
-					break;
-			}*/
 			experimentGoingWrong = true;
+			GameController.gCont.experimentsGoneWrong++;
 		}
 	}
 

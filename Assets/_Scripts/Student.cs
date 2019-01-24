@@ -86,6 +86,7 @@ public class Student : MonoBehaviour {
 	IEnumerator DangerResolver() {
 		yield return new WaitForSeconds(timeForSnapResolve);
 		SnapDone(true);
+		GameController.gCont.accidentsFixed++;
 	}
 
 	void SnapDone(bool correctDanger) {

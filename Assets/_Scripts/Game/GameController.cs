@@ -14,6 +14,9 @@ public class GameController : MonoBehaviour {
 	public float score = 2;
 	public float scoreIncreasePerSecond = 3;
 
+	public int experimentsGoneWrong;
+	public int accidentsFixed;
+
 	public void Update()
 	{
 		score += scoreIncreasePerSecond * Time.deltaTime;

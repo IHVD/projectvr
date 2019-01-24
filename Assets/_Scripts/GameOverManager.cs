@@ -20,7 +20,7 @@ public class GameOverManager : MonoBehaviour {
 	// Use this for initialization
 	void Update () {
 		//set the text of the score
-		scoreValue.text = GameController.gCont.score.ToString();
+		scoreValue.text = "Experiments Wrong: " + GameController.gCont.experimentsGoneWrong + "\n Accidents Fixed: " + GameController.gCont.accidentsFixed;
 	}
 
 
